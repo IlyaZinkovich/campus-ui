@@ -1,12 +1,16 @@
 package com.camp.campus.service.impl;
 
 import com.camp.campus.dto.ProfileDTO;
+import com.camp.campus.dto.SearchCriteria;
 import com.camp.campus.model.Profile;
 import com.camp.campus.model.Room;
 import com.camp.campus.repository.ProfilesRepository;
+import com.camp.campus.repository.ProfilesSpecification;
 import com.camp.campus.repository.RoomsRepository;
 import com.camp.campus.service.ProfilesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,9 +45,20 @@ public class ProfilesServiceImpl implements ProfilesService {
     }
 
     @Override
-    public List<ProfileDTO> getProfiles() {
-        List<Profile> profiles = (List<Profile>) profilesRepository.findAll();
+    public List<ProfileDTO> getProfiles(SearchCriteria searchCriteria, Integer page, Integer size) {
+        List<Profile> profiles;
+        if (page != null && size != null) {
+            PageRequest request = new PageRequest(page, size, Sort.Direction.DESC, "firstName");
+            profiles = profilesRepository.findAll(new ProfilesSpecification(searchCriteria), request).getContent();
+        } else {
+            profiles = profilesRepository.findAll(new ProfilesSpecification(searchCriteria));
+        }
         return profiles.stream().map(this::profileToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public ProfileDTO getProfileById(Long profileId) {
+        return profileToDto(profilesRepository.findOne(profileId));
     }
 
     private ProfileDTO profileToDto(Profile profile) {

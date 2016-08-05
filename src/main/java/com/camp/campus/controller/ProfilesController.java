@@ -1,11 +1,10 @@
 package com.camp.campus.controller;
 
 import com.camp.campus.dto.ProfileDTO;
+import com.camp.campus.dto.SearchCriteria;
 import com.camp.campus.service.ProfilesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +23,21 @@ public class ProfilesController {
     }
 
     @RequestMapping(path = "v1/profiles", method = GET)
-    public List<ProfileDTO> getProfiles() {
-        return profilesService.getProfiles();
+    public List<ProfileDTO> getProfiles(@RequestParam(required = false) String name,
+                                        @RequestParam(required = false) String gender,
+                                        @RequestParam(required = false) Integer ageLow,
+                                        @RequestParam(required = false) Integer ageHigh,
+                                        @RequestParam(required = false) String faculty,
+                                        @RequestParam(required = false) String speciality,
+                                        @RequestParam(required = false) Integer course,
+                                        @RequestParam(required = false) Integer group,
+                                        @RequestParam(required = false) Integer page,
+                                        @RequestParam(required = false) Integer size) {
+        return profilesService.getProfiles(new SearchCriteria(name, gender, ageLow, ageHigh, faculty, speciality, course, group), page, size);
+    }
+
+    @RequestMapping(path = "v1/profiles/{profileId}", method = GET)
+    public ProfileDTO getProfileById(@PathVariable Long profileId) {
+        return profilesService.getProfileById(profileId);
     }
 }
