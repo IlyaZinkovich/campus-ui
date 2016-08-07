@@ -12,6 +12,7 @@ public class Room {
     @SequenceGenerator(name = "ROOM_SEQ", sequenceName = "ROOM_SEQ", allocationSize = 1)
     private Long id;
 
+    @Column(name = "ROOM_NUMBER")
     private String roomNumber;
 
     private Integer capacity;
@@ -20,7 +21,7 @@ public class Room {
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE,
             CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ROOM_ID")
+    @JoinColumn(name = "room_id")
     private List<Profile> profiles;
 
     public Room() {
