@@ -4,9 +4,12 @@ import com.camp.campus.dto.ProfileDTO;
 import com.camp.campus.dto.RoomDTO;
 import com.camp.campus.model.Profile;
 import com.camp.campus.model.Room;
-import com.camp.campus.repository.RoomsRepository;
-import com.camp.campus.service.RoomsService;
+import com.camp.campus.repository.RoomRepository;
+import com.camp.campus.repository.RoomSpecification;
+import com.camp.campus.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -14,14 +17,20 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class RoomsServiceImpl implements RoomsService {
+public class RoomServiceImpl implements RoomService {
 
     @Autowired
-    private RoomsRepository roomsRepository;
+    private RoomRepository roomRepository;
 
     @Override
-    public List<RoomDTO> findAll() {
-        List<Room> rooms = roomsRepository.findAll();
+    public List<RoomDTO> findAll(Integer floor, Integer page, Integer size) {
+        List<Room> rooms;
+        if (page != null && size != null) {
+            PageRequest request = new PageRequest(page, size, Sort.Direction.DESC, "roomNumber");
+            rooms = roomRepository.findAll(new RoomSpecification(floor), request).getContent();
+        } else {
+            rooms = roomRepository.findAll(new RoomSpecification(floor));
+        }
         return rooms.stream().map(this::roomToDTO).collect(Collectors.toList());
     }
 

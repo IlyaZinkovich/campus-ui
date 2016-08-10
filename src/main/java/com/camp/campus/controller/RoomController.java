@@ -1,9 +1,10 @@
 package com.camp.campus.controller;
 
 import com.camp.campus.dto.RoomDTO;
-import com.camp.campus.service.RoomsService;
+import com.camp.campus.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -11,13 +12,13 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
-public class RoomsController {
+public class RoomController {
 
     @Autowired
-    private RoomsService roomsService;
+    private RoomService roomService;
 
     @RequestMapping(path = "v1/rooms", method = GET)
-    public List<RoomDTO> getRooms() {
-        return roomsService.findAll();
+    public List<RoomDTO> getRooms(@RequestParam(required = false) Integer floor, @RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size) {
+        return roomService.findAll(floor, page, size);
     }
 }

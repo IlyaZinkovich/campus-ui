@@ -4,10 +4,10 @@ import com.camp.campus.dto.ProfileDTO;
 import com.camp.campus.dto.SearchCriteria;
 import com.camp.campus.model.Profile;
 import com.camp.campus.model.Room;
-import com.camp.campus.repository.ProfilesRepository;
-import com.camp.campus.repository.ProfilesSpecification;
-import com.camp.campus.repository.RoomsRepository;
-import com.camp.campus.service.ProfilesService;
+import com.camp.campus.repository.ProfileRepository;
+import com.camp.campus.repository.ProfileSpecification;
+import com.camp.campus.repository.RoomRepository;
+import com.camp.campus.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class ProfilesServiceImpl implements ProfilesService {
+public class ProfileServiceImpl implements ProfileService {
 
     @Autowired
-    private ProfilesRepository profilesRepository;
+    private ProfileRepository profileRepository;
 
     @Autowired
-    private RoomsRepository roomsRepository;
+    private RoomRepository roomRepository;
 
     @Override
     public Long createProfile(ProfileDTO profileDTO) {
@@ -37,9 +37,9 @@ public class ProfilesServiceImpl implements ProfilesService {
                 .course(profileDTO.getCourse())
                 .group(profileDTO.getGroup())
                 .build();
-        Room room = roomsRepository.findByRoomNumber(profileDTO.getRoomNumber());
+        Room room = roomRepository.findByRoomNumber(profileDTO.getRoomNumber());
         profile.setRoom(room);
-        profilesRepository.save(profile);
+        profileRepository.save(profile);
         room.getProfiles().add(profile);
         return profile.getId();
     }
@@ -49,16 +49,16 @@ public class ProfilesServiceImpl implements ProfilesService {
         List<Profile> profiles;
         if (page != null && size != null) {
             PageRequest request = new PageRequest(page, size, Sort.Direction.DESC, "firstName");
-            profiles = profilesRepository.findAll(new ProfilesSpecification(searchCriteria), request).getContent();
+            profiles = profileRepository.findAll(new ProfileSpecification(searchCriteria), request).getContent();
         } else {
-            profiles = profilesRepository.findAll(new ProfilesSpecification(searchCriteria));
+            profiles = profileRepository.findAll(new ProfileSpecification(searchCriteria));
         }
         return profiles.stream().map(this::profileToDto).collect(Collectors.toList());
     }
 
     @Override
     public ProfileDTO getProfileById(Long profileId) {
-        return profileToDto(profilesRepository.findOne(profileId));
+        return profileToDto(profileRepository.findOne(profileId));
     }
 
     private ProfileDTO profileToDto(Profile profile) {

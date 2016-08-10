@@ -11,11 +11,11 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.LocalDate;
 
-public class ProfilesSpecification implements Specification<Profile> {
+public class ProfileSpecification implements Specification<Profile> {
 
     private SearchCriteria criteria;
 
-    public ProfilesSpecification(SearchCriteria criteria) {
+    public ProfileSpecification(SearchCriteria criteria) {
         this.criteria = criteria;
     }
 

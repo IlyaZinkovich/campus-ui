@@ -10,6 +10,8 @@ public class RoomDTO {
 
     private Integer capacity;
 
+    private Integer floor;
+
     private List<ProfileDTO> profiles;
 
     public RoomDTO() {
