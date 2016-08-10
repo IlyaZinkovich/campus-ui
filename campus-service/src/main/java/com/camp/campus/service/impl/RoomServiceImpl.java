@@ -39,6 +39,7 @@ public class RoomServiceImpl implements RoomService {
         dto.setId(room.getId());
         dto.setCapacity(room.getCapacity());
         dto.setRoomNumber(room.getRoomNumber());
+        dto.setFloor(room.getFloor());
         dto.setProfiles(room.getProfiles().stream().map(this::profileToDto).collect(Collectors.toList()));
         return dto;
     }

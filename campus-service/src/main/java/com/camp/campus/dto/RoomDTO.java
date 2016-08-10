@@ -48,4 +48,12 @@ public class RoomDTO {
     public void setProfiles(List<ProfileDTO> profiles) {
         this.profiles = profiles;
     }
+
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
+    }
 }
