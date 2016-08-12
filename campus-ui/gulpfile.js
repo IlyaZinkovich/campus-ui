@@ -10,16 +10,21 @@ gulp.task('clean', function() {
     .pipe($.clean());
 });
 
-gulp.task('html', ['image'], function() {
+gulp.task('html', ['image', 'fonts'], function() {
   gulp.src('app/assets/**/*.html')
     .pipe(gulp.dest('dist/assets'))
     .pipe(browserSync.stream());
 });
 
-gulp.task("image", function() {
-  return gulp.src("app/**/*.jpg")
+gulp.task('image', function() {
+  return gulp.src('app/**/*.svg')
     // .pipe($.imagemin())
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('fonts', function() {
+  return gulp.src(['app/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.*'])
+    .pipe(gulp.dest('dist/fonts'));
 });
 
 gulp.task('build', function() {
@@ -34,16 +39,16 @@ gulp.task('build', function() {
 
 gulp.task('bower', function() {
   return gulp.src('app/index.html')
-    .pipe(wiredep({ directory: "app/bower_components"}))
+    .pipe(wiredep({ directory: 'app/bower_components'}))
     .pipe($.inject(gulp.src(['app/assets/**/*.js'], {read: false}), {ignorePath: 'app/', addRootSlash: false}))
     .pipe($.inject(gulp.src(['app/assets/**/*.css'], {read: false}), {ignorePath: 'app/', addRootSlash: false}))
-    .pipe(gulp.dest("app"))
+    .pipe(gulp.dest('app'))
     .pipe(browserSync.stream());
 });
 
 gulp.task('default', ['build', 'html'], function () {
   browserSync.init({
-    server: "./dist",
+    server: './dist',
     port: 8083,
     notify: false,
     middleware: [
@@ -55,6 +60,6 @@ gulp.task('default', ['build', 'html'], function () {
         '/bower_components': '.app/bower_components'
     }
   });
-  gulp.watch("app/**/*.{css,js, html}", ['build']);
-  gulp.watch("app/**/*.html", ['html']);
+  gulp.watch('app/**/*.{css,js, html}', ['build']);
+  gulp.watch('app/**/*.html', ['html']);
 });
