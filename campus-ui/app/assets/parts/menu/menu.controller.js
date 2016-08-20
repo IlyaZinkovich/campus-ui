@@ -1,3 +1,3 @@
-angular.module('campus').controller('MenuCtrl', ['$scope', function($scope) {
+angular.module("campus").controller("MenuCtrl", ["$scope", function($scope) {
 
 }]);

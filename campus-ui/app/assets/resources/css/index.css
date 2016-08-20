@@ -1,6 +1,21 @@
-.btn {
-    border-radius: 0;
+html {
+  height: 100%;
+  width: 100%;
 }
-.panel {
-     border-radius: 0;
+
+body {
+  font-family: "San Francisco";
+  font-size: large;
+  color: white;
+  padding-top: 70px;
+  height: 100%;
+  background: #466368;
+}
+
+main {
+  height: 100%;
+}
+
+.content {
+  height: 100%;
 }

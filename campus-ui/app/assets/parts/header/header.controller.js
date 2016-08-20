@@ -1,3 +1,3 @@
-angular.module('campus').controller('HeaderCtrl', ['$scope', function($scope) {
+angular.module("campus").controller("HeaderCtrl", ["$scope", function($scope) {
 
 }]);

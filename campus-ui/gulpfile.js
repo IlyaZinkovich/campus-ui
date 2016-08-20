@@ -30,7 +30,7 @@ gulp.task('fonts', function() {
 gulp.task('build', function() {
   return gulp.src('app/*.html')
     .pipe($.useref())
-    .pipe($.if('*.js', $.uglify()))
+    // .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', minifyCss()))
     .pipe($.useref())
     .pipe(gulp.dest('dist'))
