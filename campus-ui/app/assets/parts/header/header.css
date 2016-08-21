@@ -31,9 +31,12 @@ header div {
   background-color: rgba(37, 94, 105, 0.5);
 }
 
-.menu-item {
-  font-size: x-large;
+navbar .list-inline {
   padding-bottom: 1%;
+}
+
+.menu-item, header span {
+  font-size: x-large;
 }
 
 .menu-item:hover {

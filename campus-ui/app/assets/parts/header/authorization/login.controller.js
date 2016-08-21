@@ -1,14 +1,21 @@
 angular.module("campus").controller("LoginCtrl", ["$scope", "$rootScope", "$state", "localStorageService", function($scope, $rootScope, $state, localStorageService) {
 
   $scope.user = {
-    name : "",
+    login : "",
     password : ""
   };
   $scope.isError = false;
 
-  $scope.check = function () {
-    if ($scope.user.name == "admin" && $scope.user.password == "admin") {
+  $scope.checkUser = function () {
+    if ($scope.user.login == "1" && $scope.user.password == "1") {
       localStorageService.cookie.set("isAuthorized", true);
+      var user = {
+        name : "Mike",
+        age : 10,
+        id : 15,
+        room : 601
+      };
+      localStorageService.cookie.set("user", user);
       $state.go("default", {} , {reload: true});
     } else {
       $scope.errorText = "user invalid";

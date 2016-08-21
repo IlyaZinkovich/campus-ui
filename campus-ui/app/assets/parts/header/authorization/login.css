@@ -1,4 +1,15 @@
 .login-form {
-  color: black;
-  background-color: white;
+  color: white;
+  text-align: center;
+  background-color: rgba(100, 100, 0, 0.3);
+  border-radius: 10px;
+}
+
+.login-form * {
+  margin-bottom: 10px;
+}
+
+.login-form input {
+  padding: 3% 10px;
+  font-size: medium;
 }

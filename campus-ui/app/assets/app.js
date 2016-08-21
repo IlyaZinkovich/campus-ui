@@ -1,4 +1,4 @@
-angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule"])
+angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule", "ngAnimate"])
     .constant({
       SERVER_HOST : "http://localhost:8088"
     })
@@ -24,8 +24,6 @@ angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule"])
         });
         $urlRouterProvider.otherwise("/");
         $locationProvider.html5Mode(true);
-    }]).run(["$rootScope", "$window", "localStorageService", function($rootScope, $window, localStorageService) {
-
-      localStorageService.cookie.set("isAuthorized", false);
+    }]).run(["$rootScope", function($rootScope) {
 
     }]);
