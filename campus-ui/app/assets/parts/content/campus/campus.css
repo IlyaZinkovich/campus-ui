@@ -1,7 +1,7 @@
-.campus-main {
-  text-align: center;
+.campus-main > h1 {
+  text-transform: uppercase;
 }
 
-.campus-main > .jumbotron {
-  background-color: rgb(100, 100, 100);
+.jumbotron {
+  background-color: rgba(100, 100, 100, 0.5);
 }
