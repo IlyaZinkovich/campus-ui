@@ -7,12 +7,4 @@ angular.module("campus").controller("ProfileCtrl", ["$scope", "localStorageServi
     $scope.success = "User updated successfully";
   };
 
-  //TODO change jquery hover to angular animate
-
-  $("#photo").hover(function () {
-    $("#image-options").show();
-  }, function () {
-    $("#image-options").hide();
-  });
-
 }]);
