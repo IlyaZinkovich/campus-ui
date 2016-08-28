@@ -10,6 +10,13 @@ angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule", "ng
                 "header": {
                     templateUrl: "assets/parts/header/header.html",
                     controller: "HeaderCtrl"
+                },
+                "footer": {
+                    templateUrl: "assets/parts/footer/footer.html"
+                },
+                "menu": {
+                    templateUrl: "assets/parts/menu/menu.html",
+                    controller: "MenuCtrl"
                 }
             }
         }).state("default", {

@@ -21,12 +21,31 @@
     <link rel="stylesheet" href="assets/parts/content/profile/profile.css">
     <link rel="stylesheet" href="assets/parts/content/students/students.css">
     <link rel="stylesheet" href="assets/parts/header/authorization/login.css">
+    <link rel="stylesheet" href="assets/parts/menu/menu.css">
     <!-- endinject -->
     <!-- endbuild -->
 </head>
 <body ng-app="campus">
 
-<div ui-view="header">
+<div id="wrapper">
+
+    <div class="menu" ui-view="menu"></div>
+
+    <main id="page-content-wrapper">
+        <header ui-view="header">
+        </header>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 content" ui-view="content">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer ui-view="footer">
+    </footer>
+</div>
+<!-- <div ui-view="header">
 </div>
 
 <main class="container">
@@ -34,7 +53,7 @@
         <div class="col-lg-12" ui-view="content">
         </div>
     </div>
-</main>
+</main> -->
 
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
@@ -63,6 +82,7 @@
 <script src="assets/parts/content/students/students.js"></script>
 <script src="assets/parts/header/authorization/login.controller.js"></script>
 <script src="assets/parts/header/authorization/login.js"></script>
+<script src="assets/parts/menu/menu.controller.js"></script>
 <!-- endinject -->
 <!-- endbuild -->
 </body>
