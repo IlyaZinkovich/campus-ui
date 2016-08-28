@@ -56,6 +56,7 @@ public class RoomServiceImpl implements RoomService {
         profileDTO.setCourse(profile.getCourse());
         profileDTO.setGroup(profile.getGroup());
         profileDTO.setRoomNumber(profile.getRoom().getRoomNumber());
+        profileDTO.setImagePath(profile.getImagePath());
         return profileDTO;
     }
 }

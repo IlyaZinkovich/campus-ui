@@ -14,7 +14,7 @@
                     </div>
                     <div ng-repeat="profile in room.profiles" class="col-md-4" style="paddding: 5px" data-toggle="modal" data-target="#myModal">
                         <div class="col-md-12 card" ng-click="setProfileToShow(profile)" style="border: 1px solid lightgray;">
-                            <img src="assets/resources/img/boy-2.svg" class="img-thumbnail" style="margin-top: 5px">
+                            <img src="{{profile.imagePath}}" class="img-thumbnail" style="margin-top: 5px">
                             <h3>{{profile.firstName + " " + profile.lastName}}</h3>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-4" style="paddding: 5px">
-                    <img src="assets/resources/img/boy-2.svg" class="img-thumbnail" style="margin-top: 5px">
+                    <img src="{{profileToShow.imagePath}}" class="img-thumbnail" style="margin-top: 5px">
                 </div>
                 <div class="col-md-8" style="paddding: 5px">
                     <table class="table">

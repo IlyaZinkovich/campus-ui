@@ -36,6 +36,7 @@ public class ProfileServiceImpl implements ProfileService {
                 .speciality(profileDTO.getSpeciality())
                 .course(profileDTO.getCourse())
                 .group(profileDTO.getGroup())
+                .imagePath(profileDTO.getImagePath())
                 .build();
         Room room = roomRepository.findByRoomNumber(profileDTO.getRoomNumber());
         profile.setRoom(room);
@@ -73,6 +74,7 @@ public class ProfileServiceImpl implements ProfileService {
         profileDTO.setCourse(profile.getCourse());
         profileDTO.setGroup(profile.getGroup());
         profileDTO.setRoomNumber(profile.getRoom().getRoomNumber());
+        profileDTO.setImagePath(profile.getImagePath());
         return profileDTO;
     }
 }

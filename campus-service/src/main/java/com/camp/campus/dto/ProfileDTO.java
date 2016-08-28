@@ -24,6 +24,8 @@ public class ProfileDTO {
 
     private String roomNumber;
 
+    private String imagePath;
+
     public ProfileDTO() {
     }
 
@@ -105,5 +107,13 @@ public class ProfileDTO {
 
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

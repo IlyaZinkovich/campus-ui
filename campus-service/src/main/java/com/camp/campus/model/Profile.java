@@ -33,13 +33,15 @@ public class Profile {
     @Column(name = "GROUP_NUMBER")
     private Integer group;
 
+    private String imagePath;
+
     @ManyToOne(optional = false)
     private Room room;
 
     public Profile() {
     }
 
-    public Profile(Long id, String firstName, String lastName, Gender gender, LocalDate birthDate, String faculty, String speciality, Integer course, Integer group) {
+    public Profile(Long id, String firstName, String lastName, Gender gender, LocalDate birthDate, String faculty, String speciality, Integer course, Integer group, String imagePath) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,6 +51,7 @@ public class Profile {
         this.speciality = speciality;
         this.course = course;
         this.group = group;
+        this.imagePath = imagePath;
     }
 
     public Long getId() {
@@ -131,6 +134,14 @@ public class Profile {
         this.room = room;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     public static class ProfileBuilder {
 
         private Long id;
@@ -142,6 +153,7 @@ public class Profile {
         private String speciality;
         private Integer course;
         private Integer group;
+        private String imagePath;
 
         public ProfileBuilder() {
 
@@ -192,9 +204,14 @@ public class Profile {
             return this;
         }
 
+        public ProfileBuilder imagePath(String imagePath) {
+            this.imagePath = imagePath;
+            return this;
+        }
+
         public Profile build() {
             return new Profile(id, firstName, lastName, gender, birthDate,
-                    faculty, speciality, course, group);
+                    faculty, speciality, course, group, imagePath);
         }
     }
 
