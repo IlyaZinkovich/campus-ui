@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-md-6">
+    <div ng-repeat="room in rooms" ng-if="room.profiles.length != 0" class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: transparent">
-                <span>601</span>
+                <span>{{room.roomNumber}}</span>
                 <button type="button" class="btn btn-default btn-xs pull-right">
                     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                     Like
@@ -10,55 +10,52 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div ng-if="room.capacity == 2" class="col-md-2">
                     </div>
-                    <div class="col-md-4 card" style="paddding: 5px" data-toggle="modal" data-target="#myModal">
-                        <div class="col-md-12" style="border: 1px solid lightgray;">
-                            <img src="assets/resources/img/boy-4.svg" class="img-thumbnail" style="margin-top: 5px">
-                            <h3>Ilya Zinkovich</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" style="paddding: 5px">
-                        <div class="col-md-12" style="border: 1px solid lightgray;">
-                            <img src="assets/resources/img/boy-1.svg" class="img-thumbnail" style="margin-top: 5px">
-                            <h3>Stepan Tsybulsky</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading" style="background-color: transparent">
-                <span>602</span>
-                <button type="button" class="btn btn-default btn-xs pull-right">
-                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    Like
-                </button>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4" style="paddding: 5px">
-                        <div class="col-md-12" style="border: 1px solid lightgray;">
-                            <img src="assets/resources/img/boy-4.svg" class="img-thumbnail" style="margin-top: 5px">
-                            <h3>Ilya Zinkovich</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" style="paddding: 5px">
-                        <div class="col-md-12" style="border: 1px solid lightgray;">
+                    <div ng-repeat="profile in room.profiles" class="col-md-4 card" style="paddding: 5px" data-toggle="modal" data-target="#myModal">
+                        <div class="col-md-12" ng-click="setProfileToShow(profile)" style="border: 1px solid lightgray;">
                             <img src="assets/resources/img/boy-2.svg" class="img-thumbnail" style="margin-top: 5px">
-                            <h3>Stas Kolodyuk</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" style="paddding: 5px">
-                        <div class="col-md-12" style="border: 1px solid lightgray;">
-                            <img src="assets/resources/img/boy-1.svg" class="img-thumbnail" style="margin-top: 5px">
-                            <h3>Stepan Tsybulsky</h3>
+                            <h3>{{profile.firstName + " " + profile.lastName}}</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">{{profileToShow.firstName + " " + profileToShow.lastName}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4" style="paddding: 5px">
+                    <img src="assets/resources/img/boy-2.svg" class="img-thumbnail" style="margin-top: 5px">
+                </div>
+                <div class="col-md-8" style="paddding: 5px">
+                    <table class="table">
+                        <tr><td>Age</td><td>{{profileToShow.birthDate | ageFilter}}</td></tr>
+                        <tr><td>Faculty</td><td>{{profileToShow.faculty}}</td></tr>
+                        <tr><td>Speciality</td><td>{{profileToShow.speciality}}</td></tr>
+                        <tr><td>Course</td><td>{{profileToShow.course}}</td></tr>
+                        <tr><td>Group</td><td>{{profileToShow.group}}</td></tr>
+                        <tr><td>Room</td><td>{{profileToShow.roomNumber}}</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                Like
+            </button>
+        </div>
+    </div>
+  </div>
 </div>
