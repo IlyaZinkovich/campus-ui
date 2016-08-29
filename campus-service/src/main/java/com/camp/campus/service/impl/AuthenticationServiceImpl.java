@@ -19,7 +19,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public ProfileDTO authenticate(UserDTO userDTO) {
-        User user = userRepository.findByName(userDTO.getName());
+        User user = userRepository.findByLogin(userDTO.getLogin());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         if (passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
             return profileToDto(user.getProfile());

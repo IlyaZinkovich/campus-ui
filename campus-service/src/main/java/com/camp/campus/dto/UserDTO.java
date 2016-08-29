@@ -3,18 +3,18 @@ package com.camp.campus.dto;
 
 public class UserDTO {
 
-    private String name;
+    private String login;
     private String password;
 
     public UserDTO() {
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
