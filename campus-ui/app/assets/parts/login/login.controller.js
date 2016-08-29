@@ -3,6 +3,7 @@ angular.module("campus").controller("LoginCtrl", ["$scope", "$rootScope", "$stat
 
     $scope.checkUser = function() {
         AuthService.authenticate($scope.user).then(function(response) {
+            $rootScope.userProfile = response.data;
             $rootScope.isAuthenticated = true;
             $state.go("default");
         }, function(response) {

@@ -42,7 +42,7 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
         var query = "page=0&size=20";
         query = query.concat("&").concat("ageLow=").concat(ageSlider.slider('getValue')[0]);
         query = query.concat("&").concat("ageHigh=").concat(ageSlider.slider('getValue')[1]);
-        if (criteria.gender !== "") {
+        if (criteria.gender !== "" && criteria.gender != null) {
             query = query.concat("&").concat("gender=").concat(criteria.gender);
         }
         ProfileService.getAll(query).then(function(response) {
