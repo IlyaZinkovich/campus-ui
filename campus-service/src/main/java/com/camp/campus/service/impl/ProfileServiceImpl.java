@@ -49,7 +49,7 @@ public class ProfileServiceImpl implements ProfileService {
     public List<ProfileDTO> getProfiles(SearchCriteria searchCriteria, Integer page, Integer size) {
         List<Profile> profiles;
         if (page != null && size != null) {
-            PageRequest request = new PageRequest(page, size, Sort.Direction.DESC, "firstName");
+            PageRequest request = new PageRequest(page, size, Sort.Direction.ASC, "firstName");
             profiles = profileRepository.findAll(new ProfileSpecification(searchCriteria), request).getContent();
         } else {
             profiles = profileRepository.findAll(new ProfileSpecification(searchCriteria));
