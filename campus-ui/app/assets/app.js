@@ -1,6 +1,6 @@
 angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule"])
     .constant({
-        SERVER_HOST: "https://localhost:8088"
+        SERVER_HOST: "http://localhost:8088"
     })
     .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider) {
         $stateProvider.state("init", {

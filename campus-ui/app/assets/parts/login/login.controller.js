@@ -1,11 +1,12 @@
-angular.module("campus").controller("LoginCtrl", ["$scope", "$rootScope", "$state", "localStorageService", function($scope, $rootScope, $state, localStorageService) {
+angular.module("campus").controller("LoginCtrl", ["$scope", "$rootScope", "$state", "localStorageService", "AuthService",
+    function($scope, $rootScope, $state, localStorageService, AuthService) {
 
     $scope.checkUser = function() {
-        if ($scope.user.login == "1" && $scope.user.password == "1") {
+        AuthService.authenticate($scope.user).then(function(response) {
             $rootScope.isAuthenticated = true;
             $state.go("default");
-        } else {
-
-        }
+        }, function(response) {
+            console.error("Authentication failed");
+        });
     };
 }]);
