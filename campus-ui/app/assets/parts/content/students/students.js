@@ -1,5 +1,14 @@
 angular.module("campus").config(["$stateProvider", function($stateProvider) {
-        $stateProvider.state("init.students", {
+        $stateProvider.state("init.students.rooms", {
+            url: "/students/rooms",
+            views: {
+                "content@": {
+                    templateUrl: "assets/parts/content/students/students-by-rooms.html",
+                    controller: "StudentsCtrl"
+                }
+            },
+            authenticate: true
+        }).state("init.students", {
             url: "/students",
             views: {
                 "content@": {
