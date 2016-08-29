@@ -6,6 +6,7 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
                 templateUrl: "assets/parts/content/events/events.html",
                 controller: "EventsCtrl"
             }
-        }
+        },
+        authenticate: true
     });
 }]);

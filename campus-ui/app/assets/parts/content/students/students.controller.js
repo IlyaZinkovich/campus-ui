@@ -1,4 +1,4 @@
-angular.module("campus").controller("StudentsCtrl", ["$scope", "RoomService", function ($scope, RoomService) {
+angular.module("campus").controller("StudentsCtrl", ["$scope", "RoomService", function($scope, RoomService) {
 
     RoomService.getAll().then(function(response) {
         $scope.rooms = response.data;
