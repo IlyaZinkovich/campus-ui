@@ -1,4 +1,4 @@
-angular.module('campus').controller('MenuCtrl', ['$scope', function($scope) {
+angular.module('campus').controller('MenuCtrl', ['$scope', 'localStorageService', function($scope, localStorageService) {
 
-    $scope.isAuthorized = true;
+    $scope.isAuthorized = localStorageService.cookie.get("isAuthorized");
 }]);

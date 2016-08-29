@@ -4,8 +4,8 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
     url: "/signin",
     views: {
         "content@": {
-            templateUrl: "assets/parts/header/authorization/login.html",
-            controller: "LoginCtrl"
+            templateUrl: "assets/parts/signin/signin.html",
+            controller: "SignInCtrl"
         }
     }
   });
