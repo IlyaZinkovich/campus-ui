@@ -7,7 +7,7 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
     ageSlider.slider({min  : lowAge, max  : highAge, value: [lowAge, highAge]});
     $scope.criteria = {
         age : [lowAge, highAge]
-    }
+    };
 
     RoomService.getAll().then(function(response) {
         $scope.rooms = response.data;
@@ -26,11 +26,11 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
     };
 
     $scope.toStudentsView = function() {
-        $state.go("init.students");
+        $state.go("students.list");
     };
 
     $scope.toRoomsView = function() {
-        $state.go("init.students.rooms");
+        $state.go("students.rooms");
     };
 
     $scope.showFilter = function() {
@@ -42,7 +42,7 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
         var query = "page=0&size=20";
         query = query.concat("&").concat("ageLow=").concat(ageSlider.slider('getValue')[0]);
         query = query.concat("&").concat("ageHigh=").concat(ageSlider.slider('getValue')[1]);
-        if (criteria.gender !== "" && criteria.gender != null) {
+        if (criteria.gender !== "" && criteria.gender !== null) {
             query = query.concat("&").concat("gender=").concat(criteria.gender);
         }
         ProfileService.getAll(query).then(function(response) {
@@ -50,5 +50,5 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
         }, function(data) {
             console.log("error");
         });
-    }
+    };
 }]);
