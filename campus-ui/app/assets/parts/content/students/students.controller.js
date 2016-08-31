@@ -38,6 +38,20 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
         $scope.isFilterExpanded = !$scope.isFilterExpanded;
     };
 
+    $scope.clearFiter = function() {
+        $scope.criteria = {
+            name: "",
+            ageLow: 16,
+            ageHigh: 25,
+            gender: "",
+            faculty: "",
+            speciality: "",
+            course: "",
+            group: ""
+        }
+        $scope.filter();
+    };
+
     $scope.filter = function() {
         var criteria = $scope.criteria;
         var query = "page=0&size=20";
