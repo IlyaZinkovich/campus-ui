@@ -27,11 +27,11 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
     };
 
     $scope.toStudentsView = function() {
-        $state.go("init.students");
+        $state.go("students.list");
     };
 
     $scope.toRoomsView = function() {
-        $state.go("init.students.rooms");
+        $state.go("students.rooms");
     };
 
     $scope.showFilter = function() {
@@ -51,5 +51,5 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
         }, function(data) {
             console.log("error");
         });
-    }
+    };
 }]);

@@ -1,6 +1,10 @@
 angular.module("campus").config(["$stateProvider", function($stateProvider) {
-        $stateProvider.state("init.students.rooms", {
-            url: "/students/rooms",
+        $stateProvider.state("students", {
+            url : "/students",
+            parent : "init",
+            abstract : true
+        }).state("students.rooms", {
+            url: "/rooms",
             views: {
                 "content@": {
                     templateUrl: "assets/parts/content/students/students-by-rooms.html",
@@ -8,8 +12,8 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
                 }
             },
             authenticate: true
-        }).state("init.students", {
-            url: "/students",
+        }).state("students.list", {
+            url: "/list",
             views: {
                 "content@": {
                     templateUrl: "assets/parts/content/students/students.html",
@@ -29,4 +33,4 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
         return function(birthdate) {
             return calculateAge(new Date(birthdate));
         };
-    });;
+    });

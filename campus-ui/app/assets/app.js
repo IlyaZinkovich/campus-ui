@@ -17,8 +17,7 @@ angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule", 'an
                         templateUrl: "assets/parts/menu/menu.html",
                         controller: "MenuCtrl"
                     }
-                },
-                authenticate: true
+                }
             })
             .state("default", {
                 parent: "init",
@@ -36,8 +35,8 @@ angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule", 'an
     }]).run(["$rootScope", "$state", "AuthService", function($rootScope, $state, AuthService) {
         $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
             if (toState.authenticate && !AuthService.isAuthenticated()) {
-                $state.transitionTo("login");
-                event.preventDefault();
+              event.preventDefault();
+              $state.transitionTo("login");
             }
         });
     }]);

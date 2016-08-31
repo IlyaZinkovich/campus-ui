@@ -5,6 +5,6 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
         templateUrl: "assets/parts/login/login.html",
         controller: "LoginCtrl",
         authenticate: false
-    })
+    });
 
 }]);
