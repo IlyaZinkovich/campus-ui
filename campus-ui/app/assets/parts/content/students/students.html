@@ -24,32 +24,32 @@
             <div class="panel-body" ng-show="isFilterExpanded">
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-inline" ng-mouseup="filter()" ng-keypress="filter()">
+                        <form class="form-inline">
                             <div class="form-group">
                                 <label style="margin-right: 0; font-weight: normal">From: </label>
-                                <input type="number" class="form-control" ng-init="16" ng-model="criteria.ageLow" min="16" max="{{criteria.ageHigh}}" style="width: 60px">
+                                <input type="number" class="form-control" ng-change="filter()" ng-init="16" ng-model="criteria.ageLow" min="16" max="{{criteria.ageHigh}}" style="width: 60px">
                             </div>
                             <b>-</b>
                             <div class="form-group">
                                 <label style="margin-left: 0; margin-right: 0; font-weight: normal">To: </label>
-                                <input type="number" class="form-control" ng-init="25" ng-model="criteria.ageHigh" min="{{criteria.ageLow}}" max="25" style="width: 60px">
+                                <input type="number" class="form-control" ng-change="filter()" ng-init="25" ng-model="criteria.ageHigh" min="{{criteria.ageLow}}" max="25" style="width: 60px">
                             </div>
-                            <select class="form-control" ng-model="criteria.gender">
+                            <select class="form-control" ng-change="filter()" ng-model="criteria.gender">
                                 <option value="" selected="selected">Everybody</option>
                                 <option value="MALE">Boys</option>
                                 <option value="FEMALE">Girls</option>
                             </select>
-                            <select class="form-control" ng-model="criteria.faculty">
+                            <select class="form-control" ng-change="filter()" ng-model="criteria.faculty">
                                 <option value="" selected="selected">Any faculty</option>
                                 <option value="FAMCS">FAMCS</option>
                             </select>
-                            <select class="form-control" ng-model="criteria.speciality">
+                            <select class="form-control" ng-change="filter()" ng-model="criteria.speciality">
                                 <option value="" selected="selected">Any speciality</option>
                                 <option value="CS">CS</option>
                                 <option value="AppM">AppM</option>
                                 <option value="CompS">CompS</option>
                             </select>
-                            <select class="form-control" ng-model="criteria.course">
+                            <select class="form-control" ng-change="filter()" ng-model="criteria.course">
                                 <option value="" selected="selected">Any course</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -57,7 +57,7 @@
                                 <option>4</option>
                                 <option>5</option>
                             </select>
-                            <select class="form-control" ng-model="criteria.group">
+                            <select class="form-control" ng-change="filter()" ng-model="criteria.group">
                                 <option value="" selected="selected">Any group</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -118,7 +118,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-default" ng-click="likeProfile(profileToShow)">
                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                 Like
             </button>

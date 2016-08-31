@@ -1,4 +1,5 @@
-angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomService", "ProfileService", function($scope, $state, RoomService, ProfileService) {
+angular.module("campus").controller("StudentsCtrl", ["$scope", "$rootScope", "$state", "RoomService", "ProfileService", "LikeService",
+    function($scope, $rootScope, $state, RoomService, ProfileService, LikeService) {
 
     $scope.isFilterExpanded = true;
 
@@ -37,6 +38,16 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
 
     $scope.showFilter = function() {
         $scope.isFilterExpanded = !$scope.isFilterExpanded;
+    };
+
+    $scope.likeProfile = function(profileToLike) {
+        LikeService.like({
+            from: profileToLike.id,
+            to: $rootScope.userProfile.id,
+            likeType: 0
+        })
+        .then(function(response) {
+        });
     };
 
     $scope.clearFiter = function() {

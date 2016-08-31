@@ -7,6 +7,7 @@ import com.camp.campus.service.EventService;
 import com.camp.campus.service.LikeService;
 import com.camp.campus.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,12 +22,11 @@ public class LikeController {
     @Autowired
     private EventService eventService;
 
-    @RequestMapping(path = "v1/like", method = POST)
-    public void like(@RequestParam(name = "type") Like.LikeType type, @RequestParam(name = "from") Long from, @RequestParam(name = "to") Long to) {
-        Like like = new Like(from, to, type);
+    @RequestMapping(path = "v1/likes", method = POST)
+    public void like(@RequestBody Like like) {
         boolean bothLike = likeService.like(like);
         if (bothLike) {
-            LikeEventDTO event = new LikeEventDTO(from, to);
+            LikeEventDTO event = new LikeEventDTO(like.getFrom(), like.getTo());
             eventService.saveLikeEvent(event);
         }
     }
