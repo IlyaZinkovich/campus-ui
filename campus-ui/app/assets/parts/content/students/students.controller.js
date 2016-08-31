@@ -1,12 +1,13 @@
 angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomService", "ProfileService", function($scope, $state, RoomService, ProfileService) {
 
     $scope.isFilterExpanded = false;
-    var lowAge = 16;
-    var highAge = 25;
-    var ageSlider = $("#ageSlider");
-    ageSlider.slider({min  : lowAge, max  : highAge, value: [lowAge, highAge]});
+
+    $scope.ageLow = 16;
+    $scope.ageHigh = 25;
+
     $scope.criteria = {
-        age : [lowAge, highAge]
+        ageLow: 16,
+        ageHigh: 25
     }
 
     RoomService.getAll().then(function(response) {
@@ -40,8 +41,8 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
     $scope.filter = function() {
         var criteria = $scope.criteria;
         var query = "page=0&size=20";
-        query = query.concat("&").concat("ageLow=").concat(ageSlider.slider('getValue')[0]);
-        query = query.concat("&").concat("ageHigh=").concat(ageSlider.slider('getValue')[1]);
+        query = query.concat("&").concat("ageLow=").concat(criteria.ageLow);
+        query = query.concat("&").concat("ageHigh=").concat(criteria.ageHigh);
         if (criteria.gender !== "" && criteria.gender != null) {
             query = query.concat("&").concat("gender=").concat(criteria.gender);
         }

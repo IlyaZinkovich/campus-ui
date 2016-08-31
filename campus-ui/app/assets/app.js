@@ -1,4 +1,4 @@
-angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule"])
+angular.module("campus", ["ui.router", "ui.bootstrap", "LocalStorageModule", 'angular-ranger'])
     .constant({
         SERVER_HOST: "http://localhost:8088"
     })
