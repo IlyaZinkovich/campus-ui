@@ -1,7 +1,7 @@
 angular.module('campus').factory('RoomService', ['$http', 'SERVER_HOST', function($http, SERVER_HOST) {
 
-    function getRooms() {
-        return $http.get(SERVER_HOST + "/v1/rooms");
+    function getRooms(query) {
+        return $http.get(SERVER_HOST + "/v1/rooms?" + query);
     }
 
     function getRoom(roomId) {

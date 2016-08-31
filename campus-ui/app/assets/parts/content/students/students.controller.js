@@ -81,4 +81,17 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
             console.log("error");
         });
     };
+
+    $scope.filterRooms = function() {
+        var criteria = $scope.criteria;
+        var query = "";
+        if (criteria.floor !== "" && criteria.floor != null) {
+            query = query.concat("&").concat("floor=").concat(criteria.floor);
+        }
+        RoomService.getAll(query).then(function(response) {
+            $scope.rooms = response.data;
+        }, function(data) {
+            console.log("error");
+        });
+    };
 }]);

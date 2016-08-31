@@ -12,9 +12,9 @@
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" ng-click="toStudentsView()"><i class="glyphicon glyphicon-th-large"></i></button>
                                 </div>
-                                <input type="text" class="form-control" ng-model="criteria.name" ng-change="filter()" placeholder="Search">
+                                <input type="text" class="form-control" ng-model="criteria.name" ng-change="filterRooms()" placeholder="Search">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default" ng-click="filter()"><i class="glyphicon glyphicon-search"></i></button>
+                                    <button class="btn btn-default" ng-click="filterRooms()"><i class="glyphicon glyphicon-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
             <div class="panel-body" ng-show="isFilterExpanded">
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-inline" ng-mouseup="filter()" ng-keypress="filter()">
+                        <form class="form-inline" ng-mouseup="filterRooms()" ng-keypress="filterRooms()">
                             <select class="form-control" ng-model="criteria.floor">
                                 <option value="" selected="selected">Any floor</option>
                                 <option>1</option>
