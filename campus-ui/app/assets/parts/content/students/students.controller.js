@@ -48,9 +48,11 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
             faculty: "",
             speciality: "",
             course: "",
-            group: ""
+            group: "",
+            floor: 1
         }
         $scope.filter();
+        $scope.filterRooms();
     };
 
     $scope.filter = function() {
