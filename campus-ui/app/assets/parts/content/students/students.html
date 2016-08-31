@@ -12,9 +12,9 @@
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" ng-click="toRoomsView()"><i class="glyphicon glyphicon-th-large"></i></button>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" ng-model="criteria.name" ng-change="filter()" placeholder="Search">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                    <button class="btn btn-default" ng-click="filter()"><i class="glyphicon glyphicon-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="panel-body" ng-show="isFilterExpanded">
                 <div class="row">
-                    <form class="form-inline" ng-mouseup="filter()" >
+                    <form class="form-inline" ng-mouseup="filter()">
                         <div class="form-group">
                             <label style="margin-right: 0">From: </label>
                             <input type="number" class="form-control" ng-init="16" ng-model="criteria.ageLow" min="16" max="{{criteria.ageHigh}}" style="width: 60px">

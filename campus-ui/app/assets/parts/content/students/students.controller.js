@@ -1,6 +1,6 @@
 angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomService", "ProfileService", function($scope, $state, RoomService, ProfileService) {
 
-    $scope.isFilterExpanded = false;
+    $scope.isFilterExpanded = true;
 
     $scope.ageLow = 16;
     $scope.ageHigh = 25;
@@ -45,6 +45,9 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
         query = query.concat("&").concat("ageHigh=").concat(criteria.ageHigh);
         if (criteria.gender !== "" && criteria.gender != null) {
             query = query.concat("&").concat("gender=").concat(criteria.gender);
+        }
+        if (criteria.name !== "" && criteria.name != null) {
+            query = query.concat("&").concat("name=").concat(criteria.name);
         }
         ProfileService.getAll(query).then(function(response) {
             $scope.students = response.data;

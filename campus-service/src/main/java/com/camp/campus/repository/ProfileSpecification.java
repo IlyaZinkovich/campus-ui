@@ -24,8 +24,8 @@ public class ProfileSpecification implements Specification<Profile> {
         Predicate predicate = criteriaBuilder.and();
         if (criteria == null) return predicate;
         if (criteria.getName() != null) {
-            Predicate firstName = criteriaBuilder.like(root.get("firstName"), criteria.getName());
-            Predicate lastName = criteriaBuilder.like(root.get("lastName"), criteria.getName());
+            Predicate firstName = criteriaBuilder.like(root.get("firstName"), "%" + criteria.getName() + "%");
+            Predicate lastName = criteriaBuilder.like(root.get("lastName"), "%" + criteria.getName() + "%");
             Predicate name = criteriaBuilder.or(firstName, lastName);
             predicate = criteriaBuilder.and(predicate, name);
         }
