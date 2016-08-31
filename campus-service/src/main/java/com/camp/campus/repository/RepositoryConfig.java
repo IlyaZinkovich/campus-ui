@@ -1,7 +1,9 @@
 package com.camp.campus.repository;
 
+import com.camp.campus.repository.implementation.LikeRepositoryImpl;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;

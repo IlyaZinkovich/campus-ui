@@ -5,7 +5,7 @@ import com.camp.campus.dto.SearchCriteria;
 import com.camp.campus.model.Profile;
 import com.camp.campus.model.Room;
 import com.camp.campus.repository.ProfileRepository;
-import com.camp.campus.repository.ProfileSpecification;
+import com.camp.campus.repository.implementation.ProfileSpecification;
 import com.camp.campus.repository.RoomRepository;
 import com.camp.campus.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;

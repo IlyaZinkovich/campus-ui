@@ -5,7 +5,7 @@ import com.camp.campus.dto.RoomDTO;
 import com.camp.campus.model.Profile;
 import com.camp.campus.model.Room;
 import com.camp.campus.repository.RoomRepository;
-import com.camp.campus.repository.RoomSpecification;
+import com.camp.campus.repository.implementation.RoomSpecification;
 import com.camp.campus.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

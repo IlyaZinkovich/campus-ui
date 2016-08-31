@@ -1,4 +1,4 @@
-package com.camp.campus.repository;
+package com.camp.campus.repository.implementation;
 
 
 import com.camp.campus.dto.SearchCriteria;
