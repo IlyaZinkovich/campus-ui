@@ -7,10 +7,11 @@ angular.module("campus").controller("StudentsCtrl", ["$scope", "$state", "RoomSe
 
     $scope.criteria = {
         ageLow: 16,
-        ageHigh: 25
+        ageHigh: 25,
+        floor: 1
     }
 
-    RoomService.getAll().then(function(response) {
+    RoomService.getAll("floor=1").then(function(response) {
         $scope.rooms = response.data;
     }, function(data) {
         console.log("error");
