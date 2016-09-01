@@ -1,7 +1,12 @@
 angular.module('campus').factory('ProfileService', ['$http', 'SERVER_HOST', function($http, SERVER_HOST) {
 
-    function getProfiles(query) {
-        return $http.get(SERVER_HOST + "/v1/profiles?" + query);
+    function getProfiles(criteria, page, size) {
+        return $http.get(SERVER_HOST + "/v1/profiles", {
+          params : {
+            page : page,
+            size : size
+          }
+        });
     }
 
     function getProfile(profileId) {
@@ -17,7 +22,7 @@ angular.module('campus').factory('ProfileService', ['$http', 'SERVER_HOST', func
     }
 
     function updateProfile(profile) {
-        return $http.post(SERVER_HOST + "/v1/profiles/" + profile.id, profile);
+        return $http.put(SERVER_HOST + "/v1/profiles/" + profile.id, profile);
     }
 
     return {

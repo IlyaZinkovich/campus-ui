@@ -12,15 +12,16 @@
     <!-- endbuild -->
     <!-- build:css css/main.css -->
     <!-- inject:css -->
+    <link rel="stylesheet" href="assets/parts/login/login.css">
     <link rel="stylesheet" href="assets/parts/footer/footer.css">
+    <link rel="stylesheet" href="assets/parts/menu/menu.css">
     <link rel="stylesheet" href="assets/parts/header/header.css">
     <link rel="stylesheet" href="assets/resources/css/index.css">
     <link rel="stylesheet" href="assets/resources/fonts/sf-webfont.css">
     <link rel="stylesheet" href="assets/parts/content/events/events.css">
     <link rel="stylesheet" href="assets/parts/content/profile/profile.css">
     <link rel="stylesheet" href="assets/parts/content/students/students.css">
-    <link rel="stylesheet" href="assets/parts/menu/menu.css">
-    <link rel="stylesheet" href="assets/parts/login/login.css">
+    <link rel="stylesheet" href="assets/parts/content/students/filter/filter.css">
     <!-- endinject -->
     <!-- endbuild -->
 </head>
@@ -28,7 +29,7 @@
 
 <div ui-view class="login"></div>
 
-<div id="wrapper" ng-show="isAuthenticated">
+<div id="wrapper" >
     <div class="menu" ui-view="menu"></div>
     <main id="page-content-wrapper">
         <header ui-view="header">
@@ -52,27 +53,32 @@
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 <!-- build:js scripts/main.js -->
 <!-- inject:js -->
 <script src="assets/app.js"></script>
-<script src="assets/services/profile.service.js"></script>
-<script src="assets/services/room.service.js"></script>
 <script src="assets/services/auth.service.js"></script>
 <script src="assets/services/event.service.js"></script>
 <script src="assets/services/like.service.js"></script>
+<script src="assets/services/profile.service.js"></script>
+<script src="assets/services/room.service.js"></script>
+<script src="assets/services/util.service.js"></script>
+<script src="assets/parts/login/login.controller.js"></script>
+<script src="assets/parts/login/login.js"></script>
+<script src="assets/parts/menu/menu.controller.js"></script>
 <script src="assets/parts/header/header.controller.js"></script>
 <script src="assets/parts/header/header.js"></script>
 <script src="assets/parts/content/events/events.controller.js"></script>
 <script src="assets/parts/content/events/events.js"></script>
 <script src="assets/parts/content/profile/profile.controller.js"></script>
 <script src="assets/parts/content/profile/profile.js"></script>
-<script src="assets/parts/content/students/students.controller.js"></script>
 <script src="assets/parts/content/students/students.js"></script>
-<script src="assets/parts/login/login.controller.js"></script>
-<script src="assets/parts/login/login.js"></script>
-<script src="assets/parts/menu/menu.controller.js"></script>
+<script src="assets/parts/content/students/filter/filter.controller.js"></script>
+<script src="assets/parts/content/students/modal/student-modal.controller.js"></script>
+<script src="assets/parts/content/students/content/list/students.list.controller.js"></script>
+<script src="assets/parts/content/students/content/rooms/students.rooms.controller.js"></script>
 <!-- endinject -->
 <!-- endbuild -->
 </body>

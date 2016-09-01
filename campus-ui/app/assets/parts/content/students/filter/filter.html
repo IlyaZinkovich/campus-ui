@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <form class="form form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" ng-click="showFilter()"><i class="glyphicon glyphicon-filter"></i></button>
+                            </div>
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" ng-click="toListView()" ng-show="view == 'rooms'"><i class="glyphicon glyphicon-th-large"></i></button>
+                                <button class="btn btn-default" ng-click="toRoomsView()" ng-show="view == 'list'"><i class="glyphicon glyphicon-th-list"></i></button>
+                            </div>
+                            <input type="text" class="form-control" ng-model="criteria.name" ng-change="filter()" placeholder="Search">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div ui-view="filter-params"></div>
+        </div>
+      </div>
+
+  </div>
+</div>
