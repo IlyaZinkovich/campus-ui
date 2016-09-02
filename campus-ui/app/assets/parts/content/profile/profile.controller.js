@@ -1,3 +1,3 @@
-angular.module("campus").controller("ProfileCtrl", ["$scope", "localStorageService", "ProfileService", function($scope, localStorageService, ProfileService) {
+angular.module("campus").controller("ProfileCtrl", ["$scope", "$rootScope", "ProfileService", function($scope, $rootScope, ProfileService) {
 
 }]);

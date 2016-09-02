@@ -2,21 +2,21 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: transparent">
-                <span>{{userProfile.firstName + " " + userProfile.lastName}}</span>
+                <span>{{user.firstName + " " + user.lastName}}</span>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-4" style="paddding: 5px">
-                        <img src="{{userProfile.imagePath}}" class="img-thumbnail" style="margin-top: 5px">
+                        <img src="{{user.imagePath}}" class="img-thumbnail" style="margin-top: 5px">
                     </div>
                     <div class="col-md-8" style="paddding: 5px">
                         <table class="table">
-                            <tr><td>Born</td><td>{{userProfile.birthDate}}</td></tr>
-                            <tr><td>Faculty</td><td>{{userProfile.faculty}}</td></tr>
-                            <tr><td>Speciality</td><td>{{userProfile.speciality}}</td></tr>
-                            <tr><td>Course</td><td>{{userProfile.course}}</td></tr>
-                            <tr><td>Group</td><td>{{userProfile.group}}</td></tr>
-                            <tr><td>Room</td><td>{{userProfile.roomNumber}}</td></tr>
+                            <tr><td>Born</td><td>{{user.birthDate}}</td></tr>
+                            <tr><td>Faculty</td><td>{{user.faculty}}</td></tr>
+                            <tr><td>Speciality</td><td>{{user.speciality}}</td></tr>
+                            <tr><td>Course</td><td>{{user.course}}</td></tr>
+                            <tr><td>Group</td><td>{{user.group}}</td></tr>
+                            <tr><td>Room</td><td>{{user.roomNumber}}</td></tr>
                         </table>
                     </div>
                 </div>

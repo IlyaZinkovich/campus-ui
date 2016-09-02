@@ -12,38 +12,22 @@
     <!-- endbuild -->
     <!-- build:css css/main.css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="assets/parts/login/login.css">
-    <link rel="stylesheet" href="assets/parts/footer/footer.css">
-    <link rel="stylesheet" href="assets/parts/menu/menu.css">
     <link rel="stylesheet" href="assets/parts/header/header.css">
+    <link rel="stylesheet" href="assets/parts/login/login.css">
+    <link rel="stylesheet" href="assets/parts/menu/menu.css">
+    <link rel="stylesheet" href="assets/parts/footer/footer.css">
     <link rel="stylesheet" href="assets/resources/css/index.css">
     <link rel="stylesheet" href="assets/resources/fonts/sf-webfont.css">
     <link rel="stylesheet" href="assets/parts/content/events/events.css">
-    <link rel="stylesheet" href="assets/parts/content/profile/profile.css">
     <link rel="stylesheet" href="assets/parts/content/students/students.css">
+    <link rel="stylesheet" href="assets/parts/content/profile/profile.css">
     <link rel="stylesheet" href="assets/parts/content/students/filter/filter.css">
     <!-- endinject -->
     <!-- endbuild -->
 </head>
 <body ng-app="campus">
 
-<div ui-view class="login"></div>
-
-<div id="wrapper" >
-    <div class="menu" ui-view="menu"></div>
-    <main id="page-content-wrapper">
-        <header ui-view="header">
-        </header>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 content" ui-view="content">
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer ui-view="footer">
-    </footer>
-</div>
+<div ui-view></div>
 
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
@@ -65,20 +49,19 @@
 <script src="assets/services/profile.service.js"></script>
 <script src="assets/services/room.service.js"></script>
 <script src="assets/services/util.service.js"></script>
+<script src="assets/parts/header/header.controller.js"></script>
 <script src="assets/parts/login/login.controller.js"></script>
 <script src="assets/parts/login/login.js"></script>
 <script src="assets/parts/menu/menu.controller.js"></script>
-<script src="assets/parts/header/header.controller.js"></script>
-<script src="assets/parts/header/header.js"></script>
 <script src="assets/parts/content/events/events.controller.js"></script>
 <script src="assets/parts/content/events/events.js"></script>
+<script src="assets/parts/content/students/students.js"></script>
 <script src="assets/parts/content/profile/profile.controller.js"></script>
 <script src="assets/parts/content/profile/profile.js"></script>
-<script src="assets/parts/content/students/students.js"></script>
 <script src="assets/parts/content/students/filter/filter.controller.js"></script>
 <script src="assets/parts/content/students/modal/student-modal.controller.js"></script>
-<script src="assets/parts/content/students/content/list/students.list.controller.js"></script>
 <script src="assets/parts/content/students/content/rooms/students.rooms.controller.js"></script>
+<script src="assets/parts/content/students/content/list/students.list.controller.js"></script>
 <!-- endinject -->
 <!-- endbuild -->
 </body>

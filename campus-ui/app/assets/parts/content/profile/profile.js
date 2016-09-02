@@ -4,12 +4,11 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
         url: "/profile/{id}",
         parent : "init",
         views: {
-            "content@": {
+            "content": {
                 templateUrl: "assets/parts/content/profile/profile.html",
                 controller: "ProfileCtrl"
             }
-        },
-        authenticate: true
+        }
     });
 
 }]);

@@ -2,16 +2,16 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
         $stateProvider.state("students", {
             url : "/students",
             parent : "init",
+            abstract : true,
             views : {
-              "content@" : {
+              "content" : {
                 templateUrl: "assets/parts/content/students/content/students.html"
               },
               "filter@students" : {
                 templateUrl: "assets/parts/content/students/filter/filter.html",
                 controller: "FilterCtrl"
               }
-            },
-            abstract : true
+            }
         }).state("students.rooms", {
             url: "/rooms",
             views: {
@@ -23,8 +23,7 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
                   templateUrl: "assets/parts/content/students/filter/rooms-filter/rooms-filter.html",
                   controller: "FilterCtrl"
                 }
-            },
-            authenticate: true
+            }
         }).state("students.list", {
             url: "/list",
             views: {
@@ -36,8 +35,7 @@ angular.module("campus").config(["$stateProvider", function($stateProvider) {
                   templateUrl: "assets/parts/content/students/filter/students-filter/students-filter.html",
                   controller: "FilterCtrl"
                 }
-            },
-            authenticate: true
+            }
         });
     }])
     .filter('ageFilter', function() {
