@@ -1,30 +1,29 @@
 <div class="modal-header">
-   <h3 class="modal-title">{{ student.firstName + " " + student.lastName }}</h3>
+    <h3 class="modal-title">{{ student.firstName + " " + student.lastName }}</h3>
 </div>
 <div class="modal-body">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-4">
-        <img src="{{student.imagePath}}" class="img-thumbnail">
-      </div>
-      <div class="col-lg-8">
-        <table class="table">
-            <tr><td>Age</td><td>{{student.birthDate | ageFilter}}</td></tr>
-            <tr><td>Faculty</td><td>{{student.faculty}}</td></tr>
-            <tr><td>Speciality</td><td>{{student.speciality}}</td></tr>
-            <tr><td>Course</td><td>{{student.course}}</td></tr>
-            <tr><td>Group</td><td>{{student.group}}</td></tr>
-            <tr><td>Room</td><td>{{student.roomNumber}}</td></tr>
-        </table>
-      </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="{{student.imagePath}}" class="img-thumbnail">
+            </div>
+            <div class="col-lg-8">
+                <table class="table">
+                <tr><td>Age</td><td>{{student.birthDate | ageFilter}}</td></tr>
+                <tr><td>Faculty</td><td>{{student.faculty}}</td></tr>
+                <tr><td>Speciality</td><td>{{student.speciality}}</td></tr>
+                <tr><td>Course</td><td>{{student.course}}</td></tr>
+                <tr><td>Group</td><td>{{student.group}}</td></tr>
+                <tr><td>Room</td><td>{{student.roomNumber}}</td></tr>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
-
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" ng-click="likeProfile(profileToShow)">
-      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-      Like
-  </button>
-   <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-default" ng-click="likeProfile(profileToShow)">
+        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        Like
+    </button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div>

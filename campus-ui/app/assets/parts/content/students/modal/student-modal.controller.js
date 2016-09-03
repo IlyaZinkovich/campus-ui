@@ -1,5 +1,5 @@
 angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService', '$uibModalInstance', 'student',
-  function($scope, LikeService, $uibModalInstance, student) {
+    function($scope, LikeService, $uibModalInstance, student) {
 
     $scope.student = student;
 
@@ -13,8 +13,8 @@ angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService
         });
     };
 
-   $scope.cancel = function () {
-     $uibModalInstance.dismiss();
-   };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss();
+    };
 
 }]);

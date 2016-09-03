@@ -6,7 +6,7 @@ angular.module('campus').controller('HeaderCtrl', ['$scope', '$rootScope', '$sta
     });
 
     $scope.logout = function() {
-      localStorageService.set('user', null);
-      $state.go('login');
+        localStorageService.set('user', null);
+        $state.go('login');
     };
 }]);
