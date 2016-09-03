@@ -4,11 +4,9 @@ angular.module('campus').factory('AuthService', ['$http', '$rootScope', 'SERVER_
 
         if (toState.data !== undefined) {
           if (toState.data.noLogin !== undefined && toState.data.noLogin) {
-            // если нужно, выполняйте здесь какие-то действия
-            // перед входом без авторизации
+
           }
         } else {
-          // вход с авторизацией
           if (localStorageService.get('user')) {
             $rootScope.user = localStorageService.get('user');
           } else {

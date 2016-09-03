@@ -4,16 +4,16 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "PROFILES")
-public class Profile {
+@Table(name = "STUDENTS")
+public class Student {
 
     public enum Gender {
         MALE, FEMALE
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROFILE_SEQ")
-    @SequenceGenerator(name = "PROFILE_SEQ", sequenceName = "PROFILE_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STUDENT_SEQ")
+    @SequenceGenerator(name = "STUDENT_SEQ", sequenceName = "STUDENT_SEQ", allocationSize = 1)
     private Long id;
 
     private String firstName;
@@ -38,10 +38,10 @@ public class Profile {
     @ManyToOne(optional = false)
     private Room room;
 
-    public Profile() {
+    public Student() {
     }
 
-    public Profile(Long id, String firstName, String lastName, Gender gender, LocalDate birthDate, String faculty, String speciality, Integer course, Integer group, String imagePath) {
+    public Student(Long id, String firstName, String lastName, Gender gender, LocalDate birthDate, String faculty, String speciality, Integer course, Integer group, String imagePath) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -142,7 +142,7 @@ public class Profile {
         this.imagePath = imagePath;
     }
 
-    public static class ProfileBuilder {
+    public static class StudentBuilder {
 
         private Long id;
         private String firstName;
@@ -155,62 +155,62 @@ public class Profile {
         private Integer group;
         private String imagePath;
 
-        public ProfileBuilder() {
+        public StudentBuilder() {
 
         }
 
-        public ProfileBuilder id(Long id) {
+        public StudentBuilder id(Long id) {
             this.id = id;
             return this;
         }
 
-        public ProfileBuilder firstName(String firstName) {
+        public StudentBuilder firstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public ProfileBuilder lastName(String lastName) {
+        public StudentBuilder lastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public ProfileBuilder gender(Gender gender) {
+        public StudentBuilder gender(Gender gender) {
             this.gender = gender;
             return this;
         }
 
-        public ProfileBuilder birthDate(LocalDate birthDate) {
+        public StudentBuilder birthDate(LocalDate birthDate) {
             this.birthDate = birthDate;
             return this;
         }
 
-        public ProfileBuilder faculty(String faculty) {
+        public StudentBuilder faculty(String faculty) {
             this.faculty = faculty;
             return this;
         }
 
-        public ProfileBuilder speciality(String speciality) {
+        public StudentBuilder speciality(String speciality) {
             this.speciality = speciality;
             return this;
         }
 
-        public ProfileBuilder course(Integer course) {
+        public StudentBuilder course(Integer course) {
             this.course = course;
             return this;
         }
 
-        public ProfileBuilder group(Integer group) {
+        public StudentBuilder group(Integer group) {
             this.group = group;
             return this;
         }
 
-        public ProfileBuilder imagePath(String imagePath) {
+        public StudentBuilder imagePath(String imagePath) {
             this.imagePath = imagePath;
             return this;
         }
 
-        public Profile build() {
-            return new Profile(id, firstName, lastName, gender, birthDate,
+        public Student build() {
+            return new Student(id, firstName, lastName, gender, birthDate,
                     faculty, speciality, course, group, imagePath);
         }
     }
@@ -220,16 +220,16 @@ public class Profile {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Profile profile = (Profile) o;
+        Student student = (Student) o;
 
-        if (firstName != null ? !firstName.equals(profile.firstName) : profile.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(profile.lastName) : profile.lastName != null) return false;
-        if (gender != profile.gender) return false;
-        if (birthDate != null ? !birthDate.equals(profile.birthDate) : profile.birthDate != null) return false;
-        if (faculty != null ? !faculty.equals(profile.faculty) : profile.faculty != null) return false;
-        if (speciality != null ? !speciality.equals(profile.speciality) : profile.speciality != null) return false;
-        if (course != null ? !course.equals(profile.course) : profile.course != null) return false;
-        return group != null ? group.equals(profile.group) : profile.group == null;
+        if (firstName != null ? !firstName.equals(student.firstName) : student.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(student.lastName) : student.lastName != null) return false;
+        if (gender != student.gender) return false;
+        if (birthDate != null ? !birthDate.equals(student.birthDate) : student.birthDate != null) return false;
+        if (faculty != null ? !faculty.equals(student.faculty) : student.faculty != null) return false;
+        if (speciality != null ? !speciality.equals(student.speciality) : student.speciality != null) return false;
+        if (course != null ? !course.equals(student.course) : student.course != null) return false;
+        return group != null ? group.equals(student.group) : student.group == null;
 
     }
 

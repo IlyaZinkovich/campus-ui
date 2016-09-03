@@ -1,10 +1,10 @@
-angular.module('campus').controller('StudentsRoomsCtrl', ['$scope', 'ROOMS_PER_PAGE', '$uibModal', 'RoomService', 'ProfileService', 'UtilService',
-    function($scope, ROOMS_PER_PAGE, $uibModal, RoomService, ProfileService, UtilService) {
+angular.module('campus').controller('StudentsRoomsCtrl', ['$scope', 'ROOMS_PER_PAGE', '$uibModal', 'RoomService', 'StudentService', 'UtilService',
+    function($scope, ROOMS_PER_PAGE, $uibModal, RoomService, StudentService, UtilService) {
 
     $scope.view = 'rooms';
 
     $scope.showUserModal = function (userId, size) {
-        ProfileService.get(userId).then(function(data) {
+        StudentService.get(userId).then(function(data) {
             UtilService.showUserModal(data.data, 'lg');
         }, function(error) {
             console.log('error');
@@ -33,8 +33,8 @@ angular.module('campus').controller('StudentsRoomsCtrl', ['$scope', 'ROOMS_PER_P
         if ($scope.rooms != null) {
             var criteria = $scope.filterCriteria;
             $scope.rooms.forEach(function (room) {
-                room.profiles.forEach(function (profile) {
-                    hideProfile(profile, criteria);
+                room.students.forEach(function (student) {
+                    hideStudent(student, criteria);
                 }
             )});
         }
@@ -51,27 +51,27 @@ angular.module('campus').controller('StudentsRoomsCtrl', ['$scope', 'ROOMS_PER_P
         return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
 
-    function hideProfile(profile, criteria) {
-        if ((criteriaExists(criteria.ageLow) && criteria.ageLow > calculateAge(profile.birthDate))) {
-            profile.hide = true;
-        } else if ((criteriaExists(criteria.ageHigh) && criteria.ageHigh < calculateAge(profile.birthDate))) {
-            profile.hide = true;
+    function hideStudent(student, criteria) {
+        if ((criteriaExists(criteria.ageLow) && criteria.ageLow > calculateAge(student.birthDate))) {
+            student.hide = true;
+        } else if ((criteriaExists(criteria.ageHigh) && criteria.ageHigh < calculateAge(student.birthDate))) {
+            student.hide = true;
         } else if (criteriaExists(criteria.name) &&
-            !((profile.firstName + ' ' + profile.lastName).toUpperCase().includes(criteria.name.toUpperCase()) ||
-            (profile.lastName + ' ' + profile.firstName).toUpperCase().includes(criteria.name.toUpperCase()))) {
-            profile.hide = true;
-        } else if (criteriaExists(criteria.gender) && criteria.gender !== profile.gender) {
-            profile.hide = true;
-        } else if (criteriaExists(criteria.faculty) && criteria.faculty !== profile.faculty) {
-            profile.hide = true;
-        } else if (criteriaExists(criteria.speciality) && criteria.speciality !== profile.speciality) {
-            profile.hide = true;
-        } else if (criteriaExists(criteria.course) && criteria.course !== profile.course.toString()) {
-            profile.hide = true;
-        } else if (criteriaExists(criteria.group) && criteria.group !== profile.group.toString()) {
-            profile.hide = true;
+            !((student.firstName + ' ' + student.lastName).toUpperCase().includes(criteria.name.toUpperCase()) ||
+            (student.lastName + ' ' + student.firstName).toUpperCase().includes(criteria.name.toUpperCase()))) {
+            student.hide = true;
+        } else if (criteriaExists(criteria.gender) && criteria.gender !== student.gender) {
+            student.hide = true;
+        } else if (criteriaExists(criteria.faculty) && criteria.faculty !== student.faculty) {
+            student.hide = true;
+        } else if (criteriaExists(criteria.speciality) && criteria.speciality !== student.speciality) {
+            student.hide = true;
+        } else if (criteriaExists(criteria.course) && criteria.course !== student.course.toString()) {
+            student.hide = true;
+        } else if (criteriaExists(criteria.group) && criteria.group !== student.group.toString()) {
+            student.hide = true;
         } else {
-            profile.hide = false;
+            student.hide = false;
         }
     }
 

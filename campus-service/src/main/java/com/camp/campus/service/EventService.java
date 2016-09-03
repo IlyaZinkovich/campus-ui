@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface EventService {
 
-    List<EventDTO> findByProfileId(Long profileId);
+    List<EventDTO> findByStudentId(Long studentId);
     void saveLikeEvent(LikeEventDTO event);
 }

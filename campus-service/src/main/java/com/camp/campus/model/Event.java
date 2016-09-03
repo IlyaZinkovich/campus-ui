@@ -16,16 +16,16 @@ public class Event {
     private String body;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "PROFILE_ID")
-    private Profile profile;
+    @JoinColumn(name = "STUDENT_ID")
+    private Student student;
 
     public Event() {
     }
 
-    public Event(String title, String body, Profile profile) {
+    public Event(String title, String body, Student student) {
         this.title = title;
         this.body = body;
-        this.profile = profile;
+        this.student = student;
     }
 
     public Long getId() {
@@ -52,12 +52,12 @@ public class Event {
         this.body = body;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     @Override
@@ -68,13 +68,13 @@ public class Event {
         Event event = (Event) o;
 
         if (title != null ? !title.equals(event.title) : event.title != null) return false;
-        return profile != null ? profile.equals(event.profile) : event.profile == null;
+        return student != null ? student.equals(event.student) : event.student == null;
     }
 
     @Override
     public int hashCode() {
         int result = title != null ? title.hashCode() : 0;
-        result = 31 * result + (profile != null ? profile.hashCode() : 0);
+        result = 31 * result + (student != null ? student.hashCode() : 0);
         return result;
     }
 }

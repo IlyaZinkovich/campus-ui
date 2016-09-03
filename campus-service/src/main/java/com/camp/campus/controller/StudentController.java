@@ -1,8 +1,8 @@
 package com.camp.campus.controller;
 
-import com.camp.campus.dto.ProfileDTO;
+import com.camp.campus.dto.StudentDTO;
 import com.camp.campus.dto.SearchCriteria;
-import com.camp.campus.service.ProfileService;
+import com.camp.campus.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,18 +12,18 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
-public class ProfileController {
+public class StudentController {
 
     @Autowired
-    private ProfileService profileService;
+    private StudentService studentService;
 
-    @RequestMapping(path = "v1/profiles", method = POST)
-    public Long createProfile(@RequestBody ProfileDTO poll) {
-        return profileService.createProfile(poll);
+    @RequestMapping(path = "v1/students", method = POST)
+    public Long createProfile(@RequestBody StudentDTO poll) {
+        return studentService.createStudent(poll);
     }
 
-    @RequestMapping(path = "v1/profiles", method = GET)
-    public List<ProfileDTO> getProfiles(@RequestParam(required = false) String name,
+    @RequestMapping(path = "v1/students", method = GET)
+    public List<StudentDTO> getProfiles(@RequestParam(required = false) String name,
                                         @RequestParam(required = false) String gender,
                                         @RequestParam(required = false) Integer ageLow,
                                         @RequestParam(required = false) Integer ageHigh,
@@ -33,11 +33,11 @@ public class ProfileController {
                                         @RequestParam(required = false) Integer group,
                                         @RequestParam(required = false) Integer page,
                                         @RequestParam(required = false) Integer size) {
-        return profileService.getProfiles(new SearchCriteria(name, gender, ageLow, ageHigh, faculty, speciality, course, group), page, size);
+        return studentService.getStudents(new SearchCriteria(name, gender, ageLow, ageHigh, faculty, speciality, course, group), page, size);
     }
 
-    @RequestMapping(path = "v1/profiles/{profileId}", method = GET)
-    public ProfileDTO getProfileById(@PathVariable Long profileId) {
-        return profileService.getProfileById(profileId);
+    @RequestMapping(path = "v1/students/{studentId}", method = GET)
+    public StudentDTO getProfileById(@PathVariable Long studentId) {
+        return studentService.getStudentById(studentId);
     }
 }

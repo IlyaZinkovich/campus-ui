@@ -1,5 +1,4 @@
 angular.module('campus').directive('studentsFilter', function (){
-
     return {
         restrict: 'E',
         scope: {
@@ -13,11 +12,9 @@ angular.module('campus').directive('studentsFilter', function (){
             $scope.toListView = function() {
                 $state.go('students.list');
             };
-
             $scope.toRoomsView = function() {
                 $state.go('students.rooms');
             };
         }
     }
-
 });

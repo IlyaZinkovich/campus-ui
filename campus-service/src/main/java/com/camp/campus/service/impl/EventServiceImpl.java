@@ -3,9 +3,9 @@ package com.camp.campus.service.impl;
 import com.camp.campus.dto.EventDTO;
 import com.camp.campus.dto.LikeEventDTO;
 import com.camp.campus.model.Event;
-import com.camp.campus.model.Profile;
+import com.camp.campus.model.Student;
 import com.camp.campus.repository.EventRepository;
-import com.camp.campus.repository.ProfileRepository;
+import com.camp.campus.repository.StudentRepository;
 import com.camp.campus.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,31 +21,31 @@ public class EventServiceImpl implements EventService {
     @Autowired
     private EventRepository eventRepository;
     @Autowired
-    private ProfileRepository profileRepository;
+    private StudentRepository studentRepository;
 
     @Override
-    public List<EventDTO> findByProfileId(Long profileId) {
-        return eventRepository.findByProfileId(profileId).stream().map(this::eventToDto).collect(Collectors.toList());
+    public List<EventDTO> findByStudentId(Long studentId) {
+        return eventRepository.findByStudentId(studentId).stream().map(this::eventToDto).collect(Collectors.toList());
     }
 
     @Override
     public void saveLikeEvent(LikeEventDTO likeEvent) {
-        Profile profile = profileRepository.findOne(likeEvent.getProfileId());
-        Profile likeProfile = profileRepository.findOne(likeEvent.getLikeProfileId());
-        Event event = getEvent(profile, likeProfile);
+        Student student = studentRepository.findOne(likeEvent.getProfileId());
+        Student likeStudent = studentRepository.findOne(likeEvent.getLikeProfileId());
+        Event event = getEvent(student, likeStudent);
         eventRepository.save(event);
-        event = getEvent(likeProfile, profile);
+        event = getEvent(likeStudent, student);
         eventRepository.save(event);
     }
 
-    private Event getEvent(Profile profile, Profile likeProfile) {
+    private Event getEvent(Student student, Student likeStudent) {
         String title = "Like";
-        String body = likeProfile.getFirstName() + " " + likeProfile.getLastName() + " likes you";
-        return new Event(title, body, profile);
+        String body = likeStudent.getFirstName() + " " + likeStudent.getLastName() + " likes you";
+        return new Event(title, body, student);
     }
 
     private EventDTO eventToDto(Event event) {
-        return new EventDTO(event.getId(), event.getTitle(), event.getBody(), event.getProfile().getId());
+        return new EventDTO(event.getId(), event.getTitle(), event.getBody(), event.getStudent().getId());
     }
 
 }

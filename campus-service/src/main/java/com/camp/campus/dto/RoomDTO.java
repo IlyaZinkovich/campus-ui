@@ -12,7 +12,7 @@ public class RoomDTO {
 
     private Integer floor;
 
-    private List<ProfileDTO> profiles;
+    private List<StudentDTO> students;
 
     public RoomDTO() {
     }
@@ -41,12 +41,12 @@ public class RoomDTO {
         this.capacity = capacity;
     }
 
-    public List<ProfileDTO> getProfiles() {
-        return profiles;
+    public List<StudentDTO> getStudents() {
+        return students;
     }
 
-    public void setProfiles(List<ProfileDTO> profiles) {
-        this.profiles = profiles;
+    public void setStudents(List<StudentDTO> students) {
+        this.students = students;
     }
 
     public Integer getFloor() {

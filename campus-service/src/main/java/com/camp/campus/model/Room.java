@@ -22,7 +22,7 @@ public class Room {
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE,
             CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
-    private List<Profile> profiles;
+    private List<Student> students;
 
     public Room() {
     }
@@ -66,12 +66,12 @@ public class Room {
         this.floor = floor;
     }
 
-    public List<Profile> getProfiles() {
-        return profiles;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setProfiles(List<Profile> profiles) {
-        this.profiles = profiles;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     @Override

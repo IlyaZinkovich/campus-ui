@@ -1,6 +1,6 @@
 package com.camp.campus.controller;
 
-import com.camp.campus.dto.ProfileDTO;
+import com.camp.campus.dto.StudentDTO;
 import com.camp.campus.dto.UserDTO;
 import com.camp.campus.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class AuthenticationController {
 
 
     @RequestMapping(path = "v1/auth", method = POST)
-    public ProfileDTO authenticate(@RequestBody UserDTO user) {
+    public StudentDTO authenticate(@RequestBody UserDTO user) {
         return authenticationService.authenticate(user);
     }
 }

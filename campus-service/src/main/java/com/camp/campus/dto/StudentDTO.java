@@ -2,7 +2,7 @@ package com.camp.campus.dto;
 
 import java.time.LocalDate;
 
-public class ProfileDTO {
+public class StudentDTO {
 
     private Long id;
 
@@ -26,7 +26,7 @@ public class ProfileDTO {
 
     private String imagePath;
 
-    public ProfileDTO() {
+    public StudentDTO() {
     }
 
     public Long getId() {

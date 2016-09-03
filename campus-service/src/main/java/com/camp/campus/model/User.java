@@ -21,8 +21,8 @@ public class User {
     private Role role;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "PROFILE_ID")
-    private Profile profile;
+    @JoinColumn(name = "STUDENT_ID")
+    private Student profile;
 
     public User() {
     }
@@ -51,11 +51,11 @@ public class User {
         this.role = role;
     }
 
-    public Profile getProfile() {
+    public Student getProfile() {
         return profile;
     }
 
-    public void setProfile(Profile profile) {
+    public void setProfile(Student profile) {
         this.profile = profile;
     }
 

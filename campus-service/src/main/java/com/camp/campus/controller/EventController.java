@@ -19,7 +19,7 @@ public class EventController {
 
     @RequestMapping(path = "v1/events/{profileId}", method = GET)
     public List<EventDTO> getProfileEvents(@PathVariable Long profileId) {
-        return eventService.findByProfileId(profileId);
+        return eventService.findByStudentId(profileId);
     }
 
 }

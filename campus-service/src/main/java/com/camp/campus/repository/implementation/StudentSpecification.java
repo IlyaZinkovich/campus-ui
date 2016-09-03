@@ -2,7 +2,7 @@ package com.camp.campus.repository.implementation;
 
 
 import com.camp.campus.dto.SearchCriteria;
-import com.camp.campus.model.Profile;
+import com.camp.campus.model.Student;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,16 +11,16 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.LocalDate;
 
-public class ProfileSpecification implements Specification<Profile> {
+public class StudentSpecification implements Specification<Student> {
 
     private SearchCriteria criteria;
 
-    public ProfileSpecification(SearchCriteria criteria) {
+    public StudentSpecification(SearchCriteria criteria) {
         this.criteria = criteria;
     }
 
     @Override
-    public Predicate toPredicate(Root<Profile> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+    public Predicate toPredicate(Root<Student> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         Predicate predicate = criteriaBuilder.and();
         if (criteria == null) return predicate;
         if (criteria.getName() != null) {
@@ -30,7 +30,7 @@ public class ProfileSpecification implements Specification<Profile> {
             predicate = criteriaBuilder.and(predicate, name);
         }
         if (criteria.getGender() != null) {
-            Predicate gender = criteriaBuilder.equal(root.get("gender"), Profile.Gender.valueOf(criteria.getGender()).ordinal());
+            Predicate gender = criteriaBuilder.equal(root.get("gender"), Student.Gender.valueOf(criteria.getGender()).ordinal());
             predicate = criteriaBuilder.and(predicate, gender);
         }
         if (criteria.getAgeLow() != null) {

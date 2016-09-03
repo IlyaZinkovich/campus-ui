@@ -1,12 +1,12 @@
-angular.module('campus').controller('StudentsListCtrl', ['$scope', '$state', 'STUDENTS_PER_PAGE', 'ProfileService', 'UtilService',
-    function ($scope, $state, STUDENTS_PER_PAGE, ProfileService, UtilService) {
+angular.module('campus').controller('StudentsListCtrl', ['$scope', '$state', 'STUDENTS_PER_PAGE', 'StudentService', 'UtilService',
+    function ($scope, $state, STUDENTS_PER_PAGE, StudentService, UtilService) {
 
     $scope.page = 0;
 
     $scope.view = 'list';
 
     $scope.showUserModal = function (userId, size) {
-        ProfileService.get(userId).then(function(data) {
+        StudentService.get(userId).then(function(data) {
             UtilService.showUserModal(data.data, 'lg');
         }, function(error) {
             console.log('error');
@@ -14,7 +14,7 @@ angular.module('campus').controller('StudentsListCtrl', ['$scope', '$state', 'ST
     };
 
     $scope.filterStudents = function () {
-        ProfileService.getAll($scope.filterCriteria, $scope.page, STUDENTS_PER_PAGE).then(function(response) {
+        StudentService.getAll($scope.filterCriteria, $scope.page, STUDENTS_PER_PAGE).then(function(response) {
             $scope.students = response.data;
         }, function(data) {
             console.log('error');
