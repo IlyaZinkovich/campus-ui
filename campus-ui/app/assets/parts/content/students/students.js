@@ -1,39 +1,27 @@
-angular.module("campus").config(["$stateProvider", function($stateProvider) {
-        $stateProvider.state("students", {
-            url : "/students",
-            parent : "init",
+angular.module('campus').config(['$stateProvider', function($stateProvider) {
+        $stateProvider.state('students', {
+            url : '/students',
+            parent : 'init',
             abstract : true,
             views : {
-              "content" : {
-                templateUrl: "assets/parts/content/students/content/students.html"
-              },
-              "filter@students" : {
-                templateUrl: "assets/parts/content/students/filter/filter.html",
-                controller: "FilterCtrl"
+              'content' : {
+                templateUrl: 'assets/parts/content/students/content/students.html'
               }
             }
-        }).state("students.rooms", {
-            url: "/rooms",
+        }).state('students.rooms', {
+            url: '/rooms',
             views: {
-                "students": {
-                    templateUrl: "assets/parts/content/students/content/rooms/students.rooms.html",
-                    controller: "StudentsRoomsCtrl"
-                },
-                "filter-params" : {
-                  templateUrl: "assets/parts/content/students/filter/rooms-filter/rooms-filter.html",
-                  controller: "FilterCtrl"
+                'students': {
+                    templateUrl: 'assets/parts/content/students/content/rooms/students.rooms.html',
+                    controller: 'StudentsRoomsCtrl'
                 }
             }
-        }).state("students.list", {
-            url: "/list",
+        }).state('students.list', {
+            url: '/list',
             views: {
-                "students": {
-                    templateUrl: "assets/parts/content/students/content/list/students.list.html",
-                    controller: "StudentsListCtrl"
-                },
-                "filter-params" : {
-                  templateUrl: "assets/parts/content/students/filter/students-filter/students-filter.html",
-                  controller: "FilterCtrl"
+                'students': {
+                    templateUrl: 'assets/parts/content/students/content/list/students.list.html',
+                    controller: 'StudentsListCtrl'
                 }
             }
         });
