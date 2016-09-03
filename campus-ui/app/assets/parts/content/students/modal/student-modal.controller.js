@@ -1,4 +1,4 @@
-angular.module("campus").controller("StudentsModalCtrl", ["$scope", "LikeService", "$uibModalInstance", "student",
+angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService', '$uibModalInstance', 'student',
   function($scope, LikeService, $uibModalInstance, student) {
 
     $scope.student = student;
