@@ -52,23 +52,16 @@ angular.module('campus').controller('StudentsRoomsCtrl', ['$scope', 'ROOMS_PER_P
     }
 
     function hideStudent(student, criteria) {
-        if ((criteriaExists(criteria.ageLow) && criteria.ageLow > calculateAge(student.birthDate))) {
-            student.hide = true;
-        } else if ((criteriaExists(criteria.ageHigh) && criteria.ageHigh < calculateAge(student.birthDate))) {
-            student.hide = true;
-        } else if (criteriaExists(criteria.name) &&
+        if ((criteriaExists(criteria.ageLow) && criteria.ageLow > calculateAge(student.birthDate)) ||
+            (criteriaExists(criteria.ageHigh) && criteria.ageHigh < calculateAge(student.birthDate)) ||
+            (criteriaExists(criteria.name) &&
             !((student.firstName + ' ' + student.lastName).toUpperCase().includes(criteria.name.toUpperCase()) ||
-            (student.lastName + ' ' + student.firstName).toUpperCase().includes(criteria.name.toUpperCase()))) {
-            student.hide = true;
-        } else if (criteriaExists(criteria.gender) && criteria.gender !== student.gender) {
-            student.hide = true;
-        } else if (criteriaExists(criteria.faculty) && criteria.faculty !== student.faculty) {
-            student.hide = true;
-        } else if (criteriaExists(criteria.speciality) && criteria.speciality !== student.speciality) {
-            student.hide = true;
-        } else if (criteriaExists(criteria.course) && criteria.course !== student.course.toString()) {
-            student.hide = true;
-        } else if (criteriaExists(criteria.group) && criteria.group !== student.group.toString()) {
+            (student.lastName + ' ' + student.firstName).toUpperCase().includes(criteria.name.toUpperCase()))) ||
+            (criteriaExists(criteria.gender) && criteria.gender !== student.gender) ||
+            (criteriaExists(criteria.faculty) && criteria.faculty !== student.faculty) ||
+            (criteriaExists(criteria.speciality) && criteria.speciality !== student.speciality) ||
+            (criteriaExists(criteria.course) && criteria.course !== student.course.toString()) ||
+            (criteriaExists(criteria.group) && criteria.group !== student.group.toString())) {
             student.hide = true;
         } else {
             student.hide = false;
