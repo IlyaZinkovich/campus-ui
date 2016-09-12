@@ -1,32 +1,54 @@
 package com.camp.campus.repository.implementation;
 
 import com.camp.campus.model.Like;
+import com.camp.campus.model.LikeNode;
 import com.camp.campus.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class LikeRepositoryImpl implements LikeRepository {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Override
-    public boolean isLikeExists(Like like) {
-        String query = "select count(*) from Likes where like_from = ? and like_to = ? and like_type = ?";
-        Integer counter = jdbcTemplate.queryForObject(
-                query, Integer.class, like.getFrom(), like.getTo(), like.getLikeType().ordinal());
-        return counter != null && counter > 0;
-    }
+    private Neo4jOperations neo4jTemplate;
 
     @Override
     public void saveLike(Like like) {
-        String query = "insert into Likes (like_from, like_to, like_type) values (?, ?, ?)";
-        jdbcTemplate.update(query, like.getFrom(), like.getTo(), like.getLikeType().ordinal());
+        Iterable<Like> likes = getLikesIfExist(like);
+        if (likes.iterator().hasNext()) return;
+        LikeNode from = findLikeNode(like.getFrom());
+        if (from != null) like.setFrom(from);
+        LikeNode to = findLikeNode(like.getTo());
+        if (to != null) like.setTo(to);
+        neo4jTemplate.save(like);
+    }
+
+    @Override
+    public List<Long> findStudentIdsWithMutualLike(Long studentId) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("relationalId", studentId);
+        return ((List<LikeNode>) neo4jTemplate.queryForObjects(LikeNode.class,
+                "MATCH (a {relationalId: {relationalId}})-[:LIKES]->(b)-[:LIKES]->(a) RETURN b",
+                parameters)).stream().map(LikeNode::getRelationalId).collect(Collectors.toList());
+    }
+
+    private Iterable<Like> getLikesIfExist(Like like) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("from", like.getFrom().getRelationalId());
+        parameters.put("to", like.getTo().getRelationalId());
+        return neo4jTemplate.queryForObjects(Like.class,
+                "MATCH (from {relationalId:{from}})-[likes:LIKES]->(to {relationalId:{to}}) RETURN likes", parameters);
+    }
+
+    private LikeNode findLikeNode(LikeNode likeNode) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("relationalId", likeNode.getRelationalId());
+        return neo4jTemplate.queryForObject(LikeNode.class, "MATCH (node {relationalId:{relationalId}}) RETURN node", parameters);
     }
 }

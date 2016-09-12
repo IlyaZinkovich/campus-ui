@@ -1,8 +1,12 @@
 package com.camp.campus.service;
 
-import com.camp.campus.model.Like;
+import com.camp.campus.dto.LikeDTO;
+
+import java.util.List;
 
 public interface LikeService {
 
-    boolean like(Like like);
+    void saveLike(LikeDTO like);
+
+    List<Long> findStudentIdsWithMutualLike(Long studentId);
 }

@@ -54,15 +54,20 @@ public class StudentServiceImpl implements StudentService {
         } else {
             students = studentRepository.findAll(new StudentSpecification(searchCriteria));
         }
-        return students.stream().map(this::profileToDto).collect(Collectors.toList());
+        return students.stream().map(this::studentToDto).collect(Collectors.toList());
     }
 
     @Override
     public StudentDTO getStudentById(Long studentId) {
-        return profileToDto(studentRepository.findOne(studentId));
+        return studentToDto(studentRepository.findOne(studentId));
     }
 
-    private StudentDTO profileToDto(Student student) {
+    @Override
+    public List<StudentDTO> getStudentsByIds(List<Long> studentIds) {
+        return studentRepository.findByIds(studentIds).stream().map(this::studentToDto).collect(Collectors.toList());
+    }
+
+    private StudentDTO studentToDto(Student student) {
         StudentDTO studentDTO = new StudentDTO();
         studentDTO.setId(student.getId());
         studentDTO.setFirstName(student.getFirstName());

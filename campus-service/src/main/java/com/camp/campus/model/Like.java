@@ -1,37 +1,45 @@
 package com.camp.campus.model;
 
+import org.neo4j.ogm.annotation.*;
+
+@RelationshipEntity(type = "LIKES")
 public class Like {
 
     public enum LikeType {
-        PROFILE, ROOM
+        STUDENT, ROOM
     }
 
-    private Long from;
-    private Long to;
+    @GraphId
+    private Long relationshipId;
+    @StartNode
+    private LikeNode from;
+    @EndNode
+    private LikeNode to;
+    @Property
     private LikeType likeType;
 
     public Like() {
     }
 
     public Like(Long from, Long to, LikeType likeType) {
-        this.from = from;
-        this.to = to;
+        this.from = new LikeNode(from);
+        this.to = new LikeNode(to);
         this.likeType = likeType;
     }
 
-    public Long getFrom() {
+    public LikeNode getFrom() {
         return from;
     }
 
-    public void setFrom(Long from) {
+    public void setFrom(LikeNode from) {
         this.from = from;
     }
 
-    public Long getTo() {
+    public LikeNode getTo() {
         return to;
     }
 
-    public void setTo(Long to) {
+    public void setTo(LikeNode to) {
         this.to = to;
     }
 
@@ -43,24 +51,11 @@ public class Like {
         this.likeType = likeType;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Like like = (Like) o;
-
-        if (from != null ? !from.equals(like.from) : like.from != null) return false;
-        if (to != null ? !to.equals(like.to) : like.to != null) return false;
-        return likeType == like.likeType;
-
+    public Long getRelationshipId() {
+        return relationshipId;
     }
 
-    @Override
-    public int hashCode() {
-        int result = from != null ? from.hashCode() : 0;
-        result = 31 * result + (to != null ? to.hashCode() : 0);
-        result = 31 * result + (likeType != null ? likeType.hashCode() : 0);
-        return result;
+    public void setRelationshipId(Long relationshipId) {
+        this.relationshipId = relationshipId;
     }
 }
