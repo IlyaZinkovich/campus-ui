@@ -31,7 +31,7 @@ public class LikeController {
         return studentService.getStudentsByIds(studentIds);
     }
 
-    @RequestMapping(path = "v1/likes/students", method = GET)
+    @RequestMapping(path = "v1/likes", method = GET)
     public boolean checkIfLikeExists(@RequestParam("from") Long from, @RequestParam("to") Long to,
                            @RequestParam("type") String type) {
         return likeService.checkIfLikeExists(from, to, type);
