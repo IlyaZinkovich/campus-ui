@@ -18,8 +18,8 @@ public class LikeServiceImpl implements LikeService {
     private LikeRepository likeRepository;
 
     @Override
-    public void saveLike(LikeDTO like) {
-        likeRepository.saveLike(new Like(like.getFrom(), like.getTo(), Like.LikeType.valueOf(like.getType())));
+    public boolean saveLikeOrRemoveIfExists(LikeDTO like) {
+        return likeRepository.saveLikeOrRemoveIfExists(new Like(like.getFrom(), like.getTo(), Like.LikeType.valueOf(like.getType())));
     }
 
     @Override

@@ -9,14 +9,14 @@ angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService
             $scope.checkIfLikeExists = response.data;
         });
 
-        $scope.likeProfile = function(profileToLike) {
+        $scope.likeProfile = function() {
             LikeService.like({
-                    from: profileToLike.id,
-                    to: $rootScope.userProfile.id,
-                    likeType: "STUDENT"
+                    from: $scope.currentUser.id,
+                    to: student.id,
+                    type: "STUDENT"
                 })
                 .then(function(response) {
-                    $scope.checkIfLikeExists = true;
+                    $scope.checkIfLikeExists = response.data;
                 });
         };
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LikeService {
 
-    void saveLike(LikeDTO like);
+    boolean saveLikeOrRemoveIfExists(LikeDTO like);
 
     List<Long> findStudentIdsWithMutualLike(Long studentId);
 

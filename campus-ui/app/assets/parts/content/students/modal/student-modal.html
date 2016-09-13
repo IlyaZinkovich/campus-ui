@@ -21,7 +21,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" ng-if="student.id !== currentUser.id" ng-class="checkIfLikeExists ? 'btn btn-primary' : 'btn btn-default'" ng-click="likeProfile(profileToShow)">
+    <button type="button" ng-if="student.id !== currentUser.id" ng-class="checkIfLikeExists ? 'btn btn-primary' : 'btn btn-default'" ng-click="likeProfile()">
         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
         Like
     </button>

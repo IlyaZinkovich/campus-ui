@@ -21,8 +21,8 @@ public class LikeController {
     private StudentService studentService;
 
     @RequestMapping(path = "v1/likes", method = POST)
-    public void like(@RequestBody LikeDTO like) {
-        likeService.saveLike(like);
+    public boolean like(@RequestBody LikeDTO like) {
+        return likeService.saveLikeOrRemoveIfExists(like);
     }
 
     @RequestMapping(path = "v1/likes/students/{studentId}", method = GET)

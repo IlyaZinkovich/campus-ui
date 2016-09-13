@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,13 +20,17 @@ public class LikeRepositoryImpl implements LikeRepository {
     private Neo4jOperations neo4jTemplate;
 
     @Override
-    public void saveLike(Like like) {
-        if (checkIfLikeExists(like)) return;
+    public boolean saveLikeOrRemoveIfExists(Like like) {
+        if (checkIfLikeExists(like)){
+            neo4jTemplate.delete(like);
+            return false;
+        }
         LikeNode from = findLikeNode(like.getFrom());
         if (from != null) like.setFrom(from);
         LikeNode to = findLikeNode(like.getTo());
         if (to != null) like.setTo(to);
         neo4jTemplate.save(like);
+        return true;
     }
 
     @Override
@@ -39,7 +44,12 @@ public class LikeRepositoryImpl implements LikeRepository {
 
     @Override
     public boolean checkIfLikeExists(Like like) {
-        return getLikesIfExist(like).iterator().hasNext();
+        Iterator<Like> iterator = getLikesIfExist(like).iterator();
+        if (iterator.hasNext()){
+            like.setRelationshipId(iterator.next().getRelationshipId());
+            return true;
+        }
+        return false;
     }
 
     private Iterable<Like> getLikesIfExist(Like like) {
