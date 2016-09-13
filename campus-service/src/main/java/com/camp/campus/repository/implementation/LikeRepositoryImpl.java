@@ -20,8 +20,7 @@ public class LikeRepositoryImpl implements LikeRepository {
 
     @Override
     public void saveLike(Like like) {
-        Iterable<Like> likes = getLikesIfExist(like);
-        if (likes.iterator().hasNext()) return;
+        if (checkIfLikeExists(like)) return;
         LikeNode from = findLikeNode(like.getFrom());
         if (from != null) like.setFrom(from);
         LikeNode to = findLikeNode(like.getTo());
@@ -36,6 +35,11 @@ public class LikeRepositoryImpl implements LikeRepository {
         return ((List<LikeNode>) neo4jTemplate.queryForObjects(LikeNode.class,
                 "MATCH (a {relationalId: {relationalId}})-[:LIKES]->(b)-[:LIKES]->(a) RETURN b",
                 parameters)).stream().map(LikeNode::getRelationalId).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean checkIfLikeExists(Like like) {
+        return getLikesIfExist(like).iterator().hasNext();
     }
 
     private Iterable<Like> getLikesIfExist(Like like) {

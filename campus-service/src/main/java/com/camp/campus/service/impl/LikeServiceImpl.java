@@ -26,4 +26,9 @@ public class LikeServiceImpl implements LikeService {
     public List<Long> findStudentIdsWithMutualLike(Long studentId) {
         return likeRepository.findStudentIdsWithMutualLike(studentId);
     }
+
+    @Override
+    public boolean checkIfLikeExists(Long from, Long to, String type) {
+        return likeRepository.checkIfLikeExists(new Like(from, to, Like.LikeType.valueOf(type)));
+    }
 }

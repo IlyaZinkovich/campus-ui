@@ -9,4 +9,6 @@ public interface LikeService {
     void saveLike(LikeDTO like);
 
     List<Long> findStudentIdsWithMutualLike(Long studentId);
+
+    boolean checkIfLikeExists(Long from, Long to, String type);
 }

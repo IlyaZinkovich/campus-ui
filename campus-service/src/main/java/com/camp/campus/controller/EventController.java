@@ -21,5 +21,4 @@ public class EventController {
     public List<EventDTO> getProfileEvents(@PathVariable Long profileId) {
         return eventService.findByStudentId(profileId);
     }
-
 }
