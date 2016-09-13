@@ -2,7 +2,7 @@ angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST', func
 
     function getStudents(criteria, page, size) {
         return $http.get(SERVER_HOST + '/v1/students', {
-            params : {
+            params: {
                 name: criteria.name,
                 ageLow: criteria.ageLow,
                 ageHigh: criteria.ageHigh,
@@ -11,8 +11,8 @@ angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST', func
                 speciality: criteria.speciality,
                 course: criteria.course,
                 group: criteria.group,
-                page : page,
-                size : size
+                page: page,
+                size: size
             }
         });
     }

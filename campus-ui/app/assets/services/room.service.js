@@ -2,10 +2,10 @@ angular.module('campus').factory('RoomService', ['$http', 'SERVER_HOST', functio
 
     function getRooms(criteria, page, size) {
         return $http.get(SERVER_HOST + '/v1/rooms', {
-            params : {
+            params: {
                 floor: criteria.floor,
-                page : page,
-                size : size
+                page: page,
+                size: size
             }
         });
     }

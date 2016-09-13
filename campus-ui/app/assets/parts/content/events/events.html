@@ -1,4 +1,28 @@
 <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h1>Hi and Welcome to the Campus!</h1>
+    </div>
+</div>
+<div class="row" ng-if="likeStudents.length !== 0">
+    <div class="col-md-6 col-md-offset-3">
+        <h1>Meet the people that like you too</h1>
+    </div>
+</div>
+<div class="row" ng-if="likeStudents.length !== 0">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div ng-repeat="student in likeStudents" class="col-md-2" style="margin-top: 5px; paddding: 5px" data-toggle="modal" data-target="#myModal">
+                    <div class="col-md-12 card" ng-click="showUserModal(student.id, lg)" style="border: 1px solid lightgray;">
+                        <img src="{{student.imagePath}}" class="img-thumbnail" style="margin-top: 5px">
+                        <h3>{{student.firstName}} <br>{{student.lastName}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-6 col-md-offset-3" ng-repeat="event in events">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: transparent">

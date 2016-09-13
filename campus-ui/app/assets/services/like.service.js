@@ -4,6 +4,10 @@ angular.module('campus').factory('LikeService', ['$http', 'SERVER_HOST', functio
         return $http.post(SERVER_HOST + '/v1/likes', likeObj);
     }
 
+    function getLikeStudents(studentId) {
+        return $http.get(SERVER_HOST + '/v1/likes/students/' + studentId)
+    }
+
     function checkIfLikeExists(from, to, type) {
         return $http.get(SERVER_HOST + '/v1/likes', {
             params: {
@@ -15,6 +19,7 @@ angular.module('campus').factory('LikeService', ['$http', 'SERVER_HOST', functio
     }
     return {
         like: like,
+        getLikeStudents: getLikeStudents,
         checkIfLikeExists: checkIfLikeExists
     };
 }]);
