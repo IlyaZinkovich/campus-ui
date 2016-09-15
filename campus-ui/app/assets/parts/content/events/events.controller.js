@@ -5,6 +5,12 @@ angular.module('campus').controller('EventsCtrl', ['$scope', '$rootScope', 'loca
 
         $scope.currentUser = localStorageService.get('user');
 
+        $scope.campusEvents = [{
+            title: 'Hi and welcome to the Campus!',
+            body: 'Meet the people that like you too'
+        }];
+
+
         LikeService.getLikeStudents($scope.currentUser.id).then(function(response) {
             $scope.likeStudents = response.data;
         })

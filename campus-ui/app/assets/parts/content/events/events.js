@@ -1,5 +1,5 @@
 angular.module('campus').config(['$stateProvider', function($stateProvider) {
-    $stateProvider.state('events', {
+    $stateProvider.state('default', {
       parent: 'init',
       url: '/events',
       views: {

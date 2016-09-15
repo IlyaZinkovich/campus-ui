@@ -23,16 +23,6 @@ angular.module('campus', ['ui.router', 'ui.bootstrap', 'LocalStorageModule'])
                         controller: 'MenuCtrl'
                     }
                 }
-            })
-            .state('default', {
-                parent: 'init',
-                url: '/',
-                views: {
-                    'content@': {
-                        templateUrl: 'assets/parts/content/events/events.html',
-                        controller: 'EventsCtrl'
-                    }
-                }
             });
         $urlRouterProvider.otherwise('/login');
         $locationProvider.html5Mode(true);
