@@ -27,9 +27,7 @@
                             <div class="form-group">
                                 <label style="margin-right: 0; font-weight: normal">From: </label>
                                 <input type="number" class="form-control" ng-change="filter()" ng-model="criteria.ageLow" min="16" max="{{criteria.ageHigh}}" style="width: 60px">
-                            </div>
                             <b>-</b>
-                            <div class="form-group">
                                 <label style="margin-left: 0; margin-right: 0; font-weight: normal">To: </label>
                                 <input type="number" class="form-control" ng-change="filter()" ng-model="criteria.ageHigh" min="{{criteria.ageLow}}" max="25" style="width: 60px">
                             </div>
@@ -72,7 +70,7 @@
                                 <option>12</option>
                                 <option>13</option>
                             </select>
-                            <button class="btn btn-default" ng-click="clear()">Clear</button>
+                            <button class="btn btn-default filter-button" ng-click="clear()">Clear</button>
                         </form>
                     </div>
                 </div>
