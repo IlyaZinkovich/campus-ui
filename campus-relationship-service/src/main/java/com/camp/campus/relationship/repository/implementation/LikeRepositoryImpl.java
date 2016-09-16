@@ -1,8 +1,8 @@
-package com.camp.campus.repository.implementation;
+package com.camp.campus.relationship.repository.implementation;
 
-import com.camp.campus.model.Like;
-import com.camp.campus.model.LikeNode;
-import com.camp.campus.repository.LikeRepository;
+import com.camp.campus.relationship.model.Like;
+import com.camp.campus.relationship.model.LikeNode;
+import com.camp.campus.relationship.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.stereotype.Repository;

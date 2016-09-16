@@ -1,4 +1,4 @@
-package com.camp.campus.model;
+package com.camp.campus.relationship.model;
 
 import org.neo4j.ogm.annotation.*;
 

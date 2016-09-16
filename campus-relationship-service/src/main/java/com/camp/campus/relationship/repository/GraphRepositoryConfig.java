@@ -1,8 +1,10 @@
-package com.camp.campus.repository;
+package com.camp.campus.relationship.repository;
 
+import com.camp.campus.relationship.repository.implementation.LikeRepositoryImpl;
 import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
@@ -26,7 +28,7 @@ public class GraphRepositoryConfig extends Neo4jConfiguration {
 
     @Bean
     public SessionFactory getSessionFactory() {
-        return new SessionFactory(getConfiguration(), "com.camp.campus.model");
+        return new SessionFactory(getConfiguration(), "com.camp.campus.relationship.model");
     }
 
     @Bean

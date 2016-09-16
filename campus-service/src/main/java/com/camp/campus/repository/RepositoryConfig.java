@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:application.properties")
 @EntityScan(basePackages = {"com.camp.campus.model"})
 @EnableTransactionManagement
-@Import(GraphRepositoryConfig.class)
 public class RepositoryConfig {
 
 //    @Resource

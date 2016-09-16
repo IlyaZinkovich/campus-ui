@@ -1,6 +1,6 @@
-package com.camp.campus.repository;
+package com.camp.campus.relationship.repository;
 
-import com.camp.campus.model.Like;
+import com.camp.campus.relationship.model.Like;
 
 import java.util.List;
 

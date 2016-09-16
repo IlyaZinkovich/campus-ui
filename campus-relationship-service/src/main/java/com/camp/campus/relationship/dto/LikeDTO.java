@@ -1,4 +1,4 @@
-package com.camp.campus.dto;
+package com.camp.campus.relationship.dto;
 
 public class LikeDTO {
 

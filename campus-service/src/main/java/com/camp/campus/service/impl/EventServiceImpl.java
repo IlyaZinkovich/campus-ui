@@ -1,7 +1,6 @@
 package com.camp.campus.service.impl;
 
 import com.camp.campus.dto.EventDTO;
-import com.camp.campus.dto.LikeEventDTO;
 import com.camp.campus.model.Event;
 import com.camp.campus.model.Student;
 import com.camp.campus.repository.EventRepository;
@@ -26,16 +25,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<EventDTO> findByStudentId(Long studentId) {
         return eventRepository.findByStudentId(studentId).stream().map(this::eventToDto).collect(Collectors.toList());
-    }
-
-    @Override
-    public void saveLikeEvent(LikeEventDTO likeEvent) {
-        Student student = studentRepository.findOne(likeEvent.getProfileId());
-        Student likeStudent = studentRepository.findOne(likeEvent.getLikeProfileId());
-        Event event = getEvent(student, likeStudent);
-        eventRepository.save(event);
-        event = getEvent(likeStudent, student);
-        eventRepository.save(event);
     }
 
     private Event getEvent(Student student, Student likeStudent) {

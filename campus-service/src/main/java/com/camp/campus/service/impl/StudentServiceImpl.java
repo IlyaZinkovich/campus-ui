@@ -1,12 +1,12 @@
 package com.camp.campus.service.impl;
 
-import com.camp.campus.dto.StudentDTO;
 import com.camp.campus.dto.SearchCriteria;
-import com.camp.campus.model.Student;
+import com.camp.campus.dto.StudentDTO;
 import com.camp.campus.model.Room;
+import com.camp.campus.model.Student;
+import com.camp.campus.repository.RoomRepository;
 import com.camp.campus.repository.StudentRepository;
 import com.camp.campus.repository.implementation.StudentSpecification;
-import com.camp.campus.repository.RoomRepository;
 import com.camp.campus.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -65,6 +65,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentDTO> getStudentsByIds(List<Long> studentIds) {
         return studentRepository.findByIds(studentIds).stream().map(this::studentToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateStudentImage(Long studentId, String imagePath) {
+        Student student = studentRepository.findOne(studentId);
+        student.setImagePath(imagePath);
+        studentRepository.save(student);
     }
 
     private StudentDTO studentToDto(Student student) {

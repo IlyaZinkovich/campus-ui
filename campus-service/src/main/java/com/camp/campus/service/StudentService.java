@@ -14,4 +14,6 @@ public interface StudentService {
     StudentDTO getStudentById(Long studentId);
 
     List<StudentDTO> getStudentsByIds(List<Long> studentIds);
+
+    void updateStudentImage(Long studentId, String imagePath);
 }

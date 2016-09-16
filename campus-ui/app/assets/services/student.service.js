@@ -33,11 +33,18 @@ angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST', func
         return $http.put(SERVER_HOST + '/v1/students/' + profile.id, profile);
     }
 
+    function updateProfileImage(profileId, imagePath) {
+        return $http.put(SERVER_HOST + '/v1/students/' + profileId + '/image', {
+            'imagePath': imagePath
+        });
+    }
+
     return {
         create: createProfile,
         delete: deleteProfile,
         update: updateProfile,
         get: getProfile,
-        getAll: getStudents
+        getAll: getStudents,
+        updateProfileImage: updateProfileImage
     };
 }]);

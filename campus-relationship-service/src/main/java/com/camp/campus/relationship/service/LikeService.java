@@ -1,6 +1,6 @@
-package com.camp.campus.service;
+package com.camp.campus.relationship.service;
 
-import com.camp.campus.dto.LikeDTO;
+import com.camp.campus.relationship.dto.LikeDTO;
 
 import java.util.List;
 
