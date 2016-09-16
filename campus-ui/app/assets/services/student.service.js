@@ -1,4 +1,5 @@
-angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST', function($http, SERVER_HOST) {
+angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST',
+    function($http, SERVER_HOST) {
 
     function getStudents(criteria, page, size) {
         return $http.get(SERVER_HOST + '/v1/students', {
@@ -17,34 +18,32 @@ angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST', func
         });
     }
 
-    function getProfile(profileId) {
-        return $http.get(SERVER_HOST + '/v1/students/' + profileId);
+    function getStudent(studentId) {
+        return $http.get(SERVER_HOST + '/v1/students/' + studentId);
     }
 
-    function createProfile(profile) {
-        return $http.post(SERVER_HOST + '/v1/students', profile);
+    function createStudent(student) {
+        return $http.post(SERVER_HOST + '/v1/students', student);
     }
 
-    function deleteProfile(profileId) {
-        return $http.delete(SERVER_HOST + '/v1/students/' + profileId);
+    function deleteStudent(studentId) {
+        return $http.delete(SERVER_HOST + '/v1/students/' + studentId);
     }
 
-    function updateProfile(profile) {
-        return $http.put(SERVER_HOST + '/v1/students/' + profile.id, profile);
+    function updateStudent(student) {
+        return $http.put(SERVER_HOST + '/v1/students/' + student.id, student);
     }
 
-    function updateProfileImage(profileId, imagePath) {
-        return $http.put(SERVER_HOST + '/v1/students/' + profileId + '/image', {
-            'imagePath': imagePath
-        });
+    function updateImage(studentId, imagePath) {
+        return $http.put(SERVER_HOST + '/v1/students/' + studentId + '/image', imagePath);
     }
 
     return {
-        create: createProfile,
-        delete: deleteProfile,
-        update: updateProfile,
-        get: getProfile,
+        create: createStudent,
+        delete: deleteStudent,
+        update: updateStudent,
+        get: getStudent,
         getAll: getStudents,
-        updateProfileImage: updateProfileImage
+        updateImage: updateImage
     };
 }]);

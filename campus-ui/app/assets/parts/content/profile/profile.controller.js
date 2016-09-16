@@ -1,6 +1,15 @@
-angular.module('campus').controller('ProfileCtrl', ['$scope', '$rootScope', 'StudentService', function($scope, $rootScope, StudentService) {
+angular.module('campus').controller('ProfileCtrl', ['$scope', '$rootScope',
+    'localStorageService','StudentService', function($scope, $rootScope,
+        localStorageService, StudentService) {
+
+    $rootScope.imagePath = $scope.user.imagePath;
 
     $scope.changeImage = function() {
-        StudentService.updateProfileImage($rootScope.user.id, $scope.imagePath);
+        StudentService.updateImage($rootScope.user.id, $scope.imagePath)
+            .then(function(response) {
+
+            $rootScope.user.imagePath = $scope.imagePath;
+            localStorageService.set('user', $rootScope.user);
+        });
     }
 }]);
