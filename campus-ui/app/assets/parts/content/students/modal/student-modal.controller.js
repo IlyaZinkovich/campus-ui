@@ -20,7 +20,7 @@ angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService
                 });
         };
 
-        $scope.cancel = function() {
+        $scope.close = function() {
             $uibModalInstance.dismiss();
         };
 
