@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
@@ -56,9 +57,7 @@ public class StudentController {
 
     @RequestMapping(path = "v1/likes/students/{studentId}", method = GET)
     public List<StudentDTO> findStudentsWithMutualLike(@PathVariable("studentId") Long studentId) {
-        List objectIds = restTemplate.getForObject(relationshipServerUrl + "/v1/likes/students/" + studentId, List.class);
-        List<Long> studentIds = new ArrayList<>(objectIds.size());
-        objectIds.forEach(o -> studentIds.add(Long.valueOf((Integer) o)));
-        return studentService.getStudentsByIds(studentIds);
+        Long[] studentIdsArray = restTemplate.getForObject(relationshipServerUrl + "/v1/likes/students/" + studentId, Long[].class);
+        return studentService.getStudentsByIds(Arrays.asList(studentIdsArray));
     }
 }
