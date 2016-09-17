@@ -2,6 +2,7 @@ package com.camp.campus.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "STUDENTS")
@@ -37,6 +38,9 @@ public class Student {
 
     @ManyToOne(optional = false)
     private Room room;
+
+    @ManyToMany(mappedBy = "students")
+    private List<CampusGroup> groups;
 
     public Student() {
     }
@@ -140,6 +144,14 @@ public class Student {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public List<CampusGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<CampusGroup> groups) {
+        this.groups = groups;
     }
 
     public static class StudentBuilder {
