@@ -1,16 +1,13 @@
 package com.camp.campus.controller;
 
-import com.camp.campus.dto.GroupDTO;
 import com.camp.campus.dto.GroupMessageDTO;
 import com.camp.campus.dto.GroupMessagePostDTO;
-import com.camp.campus.dto.StudentDTO;
 import com.camp.campus.service.GroupMessageService;
 import com.camp.campus.service.GroupService;
 import com.camp.campus.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -29,14 +26,18 @@ public class GroupMessageController {
     private StudentService studentService;
 
     @RequestMapping(path = "v1/groups/messages", method = GET)
-    public List<GroupMessageDTO> getGroupsMessages(@RequestParam(required = false) Long studentId) {
+    public List<GroupMessageDTO> getGroupsMessages(@RequestParam(required = false) Long studentId,
+                                                   @RequestParam(required = false) Integer page,
+                                                   @RequestParam(required = false) Integer size) {
         List<Long> studentGroupIds = groupService.getStudentGroupIds(studentId);
-        return groupMessageService.getGroupsMessages(studentGroupIds);
+        return groupMessageService.getGroupsMessages(studentGroupIds, page, size);
     }
 
     @RequestMapping(path = "v1/groups/{groupId}/messages", method = GET)
-    public List<GroupMessageDTO> getGroupMessages(@PathVariable("groupId") Long groupId) {
-        return groupMessageService.getGroupMessages(groupId);
+    public List<GroupMessageDTO> getGroupMessages(@PathVariable("groupId") Long groupId,
+                                                  @RequestParam(required = false) Integer page,
+                                                  @RequestParam(required = false) Integer size) {
+        return groupMessageService.getGroupMessages(groupId, page, size);
     }
 
     @RequestMapping(path = "v1/groups/{groupId}/messages", method = POST)

@@ -38,6 +38,7 @@ angular.module('campus').controller('GroupCtrl',
                 MessageService.getGroupMessages($scope.group.id).then(function(response) {
                     $scope.groupMessages = response.data;
                 });
+                $scope.messageBody = '';
             });
         }
     }

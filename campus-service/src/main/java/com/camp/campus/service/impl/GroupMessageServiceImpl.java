@@ -10,6 +10,8 @@ import com.camp.campus.repository.GroupRepository;
 import com.camp.campus.repository.StudentRepository;
 import com.camp.campus.service.GroupMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,14 +33,16 @@ public class GroupMessageServiceImpl implements GroupMessageService {
     private StudentRepository studentRepository;
 
     @Override
-    public List<GroupMessageDTO> getGroupsMessages(List<Long> groupIds) {
-        return groupMessageRepository.getGroupsMessages(groupIds)
+    public List<GroupMessageDTO> getGroupsMessages(List<Long> groupIds, Integer page, Integer size) {
+        PageRequest request = new PageRequest(page, size, Sort.Direction.DESC, "postTime");
+        return groupMessageRepository.getGroupsMessages(groupIds, request)
                 .stream().map(this::groupMessageToDto).collect(Collectors.toList());
     }
 
     @Override
-    public List<GroupMessageDTO> getGroupMessages(Long groupId) {
-        return groupMessageRepository.getGroupMessages(groupId)
+    public List<GroupMessageDTO> getGroupMessages(Long groupId, Integer page, Integer size) {
+        PageRequest request = new PageRequest(page, size, Sort.Direction.DESC, "postTime");
+        return groupMessageRepository.getGroupMessages(groupId, request)
                 .stream().map(this::groupMessageToDtoWithoutGroup).collect(Collectors.toList());
     }
 

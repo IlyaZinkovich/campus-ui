@@ -3,7 +3,8 @@ angular.module('campus', ['ui.router', 'ui.bootstrap', 'LocalStorageModule'])
         SERVER_HOST: 'http://localhost:8088',
         RELATIONSHIP_SERVER_HOST: 'http://localhost:8089',
         ROOMS_PER_PAGE: 20,
-        STUDENTS_PER_PAGE: 10
+        STUDENTS_PER_PAGE: 10,
+        MESSAGES_PER_PAGE: 20
     })
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
         $stateProvider.state('init', {
