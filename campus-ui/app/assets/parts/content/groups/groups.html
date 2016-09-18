@@ -8,10 +8,10 @@
                 <div class="panel-body">
                     <div class="row row-equal-height">
                         <div ng-repeat="group in studentGroups" class="col-md-4" style="margin-top: 5px; paddding: 5px">
-                            <div class="col-md-12 card" style="border: 1px solid lightgray;">
+                            <div class="col-md-12 card" ng-click="goToGroup(group.id)" style="border: 1px solid lightgray;">
                                 <div style="padding: 5px; border: 1px solid lightgray; margin-top:5px;">
                                     <div style="position:relative; overflow:hidden; padding-bottom:100%;">
-                                        <img src="" style="position:absolute; max-width: 100%; height: auto;">
+                                        <img src="{{group.imageUrl}}" style="position:absolute; max-width: 100%; height: auto;">
                                     </div>
                                 </div>
                                 <h3>{{group.name}}</h3>
@@ -29,10 +29,10 @@
                 <div class="panel-body">
                     <div class="row row-equal-height">
                         <div ng-repeat="group in groupsToJoin" class="col-md-4" style="margin-top: 5px; paddding: 5px">
-                            <div class="col-md-12 card" style="border: 1px solid lightgray;">
+                            <div class="col-md-12 card" ng-click="goToGroup(group.id)" style="border: 1px solid lightgray;">
                                 <div style="padding: 5px; border: 1px solid lightgray; margin-top:5px;">
                                     <div style="position:relative; overflow:hidden; padding-bottom:100%;">
-                                        <img src="" style="position:absolute; max-width: 100%; height: auto;">
+                                        <img src="{{group.imageUrl}}" style="position:absolute; max-width: 100%; height: auto;">
                                     </div>
                                 </div>
                                 <h3>{{group.name}}</h3>

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,18 +27,29 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public List<GroupDTO> getGroups(Long studentId, Boolean joined) {
-        List<CampusGroup> groups = new ArrayList<>(0);
+        List<CampusGroup> groups = Collections.EMPTY_LIST;
         if (studentId != null && joined != null) {
             groups = joined ? groupRepository.findGroupsByStudentId(studentId) :
                     groupRepository.findGroupsNotJoinedByStudentWithId(studentId);
-
         } else {
             groupRepository.findAll();
         }
         return groups.stream().map(this::groupToGroupDto).collect(Collectors.toList());
     }
 
+    @Override
+    public GroupDTO getGroup(Long groupId) {
+        return groupToGroupDto(groupRepository.findOne(groupId));
+    }
+
+    @Override
+    public void updateGroupImage(Long groupId, String imageUrl) {
+        CampusGroup group = groupRepository.findOne(groupId);
+        group.setImageUrl(imageUrl);
+        groupRepository.save(group);
+    }
+
     private GroupDTO groupToGroupDto(CampusGroup group) {
-        return new GroupDTO(group.getId(), group.getName());
+        return new GroupDTO(group.getId(), group.getName(), group.getImageUrl());
     }
 }

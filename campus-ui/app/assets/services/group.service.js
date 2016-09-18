@@ -9,9 +9,20 @@ angular.module('campus').factory('GroupService',
                 joined: joined
             }
         });
-    }
+    };
+
+    function updateImage(groupId, imageUrl) {
+        return $http.put(SERVER_HOST + '/v1/groups/' + groupId + '/image', imageUrl);
+    };
+
+
+    function getGroup(groupId) {
+        return $http.get(SERVER_HOST + '/v1/groups/' + groupId);
+    };
 
     return {
-        getStudentGroups: getStudentGroups
+        getStudentGroups: getStudentGroups,
+        updateImage: updateImage,
+        getGroup: getGroup
     };
 }]);

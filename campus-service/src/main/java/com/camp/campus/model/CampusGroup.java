@@ -14,6 +14,8 @@ public class CampusGroup {
 
     private String name;
 
+    private String imageUrl;
+
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE,
             CascadeType.MERGE }, fetch = FetchType.LAZY)
     @JoinTable(name = "STUDENT_GROUPS",
@@ -60,6 +62,14 @@ public class CampusGroup {
         this.messages = messages;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,4 +85,5 @@ public class CampusGroup {
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
     }
+
 }

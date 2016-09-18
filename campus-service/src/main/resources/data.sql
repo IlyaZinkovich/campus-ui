@@ -31,16 +31,16 @@ INSERT INTO "CAMPUS_USERS" (ID, LOGIN, PASSWORD, ROLE, STUDENT_ID) VALUES ('8', 
 INSERT INTO "CAMPUS_USERS" (ID, LOGIN, PASSWORD, ROLE, STUDENT_ID) VALUES ('9', '9', '$2a$10$OFKf0NlsA2CXGFf4oSBx5uow22XGu7Ja5oi3cBTqChamA.rBlccRe', '0', '8');
 INSERT INTO "CAMPUS_USERS" (ID, LOGIN, PASSWORD, ROLE, STUDENT_ID) VALUES ('10', '10', '$2a$10$OFKf0NlsA2CXGFf4oSBx5uow22XGu7Ja5oi3cBTqChamA.rBlccRe', '0', '10');
 
-INSERT INTO "CAMPUS_GROUPS" VALUES (1, 'All Students');
-INSERT INTO "CAMPUS_GROUPS" VALUES (2, 'Sports');
-INSERT INTO "CAMPUS_GROUPS" VALUES (3, 'Music');
-INSERT INTO "CAMPUS_GROUPS" VALUES (4, 'Dancing');
-INSERT INTO "CAMPUS_GROUPS" VALUES (5, 'Games');
-INSERT INTO "CAMPUS_GROUPS" VALUES (6, 'Walking');
-INSERT INTO "CAMPUS_GROUPS" VALUES (7, 'Food');
-INSERT INTO "CAMPUS_GROUPS" VALUES (8, 'Fashion');
-INSERT INTO "CAMPUS_GROUPS" VALUES (9, 'FAMCS');
-INSERT INTO "CAMPUS_GROUPS" VALUES (10, 'Philological Faculty');
+INSERT INTO "CAMPUS_GROUPS" VALUES (1, 'All Students', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (2, 'Sports', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (3, 'Music', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (4, 'Dancing', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (5, 'Games', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (6, 'Walking', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (7, 'Food', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (8, 'Fashion', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (9, 'FAMCS', 'assets/resources/img/group.svg');
+INSERT INTO "CAMPUS_GROUPS" VALUES (10, 'Philological Faculty', 'assets/resources/img/group.svg');
 
 INSERT INTO "STUDENT_GROUPS" (STUDENT_ID, GROUP_ID) VALUES (1, 1);
 INSERT INTO "STUDENT_GROUPS" (STUDENT_ID, GROUP_ID) VALUES (1, 2);

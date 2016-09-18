@@ -1,7 +1,7 @@
 angular.module('campus').controller('GroupsCtrl',
-    ['$scope', '$rootScope', 'localStorageService', 'GroupService',
+    ['$scope', '$state', '$rootScope', 'localStorageService', 'GroupService',
 
-    function($scope, $rootScope, localStorageService, GroupService) {
+    function($scope, $state, $rootScope, localStorageService, GroupService) {
 
         $scope.currentUser = localStorageService.get('user');
 
@@ -14,5 +14,9 @@ angular.module('campus').controller('GroupsCtrl',
             .then(function(response) {
             $scope.groupsToJoin = response.data;
         });
+
+        $scope.goToGroup = function(groupId) {
+            $state.go('group', {'groupId': groupId});
+        }
     }
 ]);

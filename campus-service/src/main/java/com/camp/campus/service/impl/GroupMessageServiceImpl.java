@@ -32,6 +32,6 @@ public class GroupMessageServiceImpl implements GroupMessageService {
     }
 
     private GroupDTO groupToDto(CampusGroup group) {
-        return new GroupDTO(group.getId(), group.getName());
+        return new GroupDTO(group.getId(), group.getName(), group.getImageUrl());
     }
 }
