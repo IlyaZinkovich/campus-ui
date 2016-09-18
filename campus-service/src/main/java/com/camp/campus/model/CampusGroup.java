@@ -9,7 +9,7 @@ public class CampusGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUP_SEQ")
-    @SequenceGenerator(name = "GROUP_SEQ", sequenceName = "GROUP_SEQ", allocationSize = 1)
+    @SequenceGenerator(name = "GROUP_SEQ", sequenceName = "GROUP_SEQ", allocationSize = 10000)
     private Long id;
 
     private String name;
@@ -23,8 +23,9 @@ public class CampusGroup {
             inverseJoinColumns = {@JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")})
     private List<Student> students;
 
-    @OneToMany(mappedBy = "group", cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE,
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE,
             CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id")
     private List<GroupMessage> messages;
 
     public CampusGroup() {

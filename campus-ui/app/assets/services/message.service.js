@@ -14,8 +14,13 @@ angular.module('campus').factory('MessageService',
         return $http.get(SERVER_HOST + '/v1/groups/' + groupId + '/messages');
     }
 
+    function postGroupMessage(groupId, message) {
+        return $http.post(SERVER_HOST + '/v1/groups/' + groupId + '/messages', message);
+    }
+
     return {
         getMessagesForStudent: getMessagesForStudent,
-        getGroupMessages: getGroupMessages
+        getGroupMessages: getGroupMessages,
+        postGroupMessage: postGroupMessage
     };
 }]);

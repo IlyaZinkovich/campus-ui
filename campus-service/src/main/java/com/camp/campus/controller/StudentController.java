@@ -27,12 +27,12 @@ public class StudentController {
     private String relationshipServerUrl;
 
     @RequestMapping(path = "v1/students", method = POST)
-    public Long createProfile(@RequestBody StudentDTO poll) {
-        return studentService.createStudent(poll);
+    public Long createStudent(@RequestBody StudentDTO studentDTO) {
+        return studentService.createStudent(studentDTO);
     }
 
     @RequestMapping(path = "v1/students", method = GET)
-    public List<StudentDTO> getProfiles(@RequestParam(required = false) String name,
+    public List<StudentDTO> getStudents(@RequestParam(required = false) String name,
                                         @RequestParam(required = false) String gender,
                                         @RequestParam(required = false) Integer ageLow,
                                         @RequestParam(required = false) Integer ageHigh,
@@ -46,7 +46,7 @@ public class StudentController {
     }
 
     @RequestMapping(path = "v1/students/{studentId}", method = GET)
-    public StudentDTO getProfileById(@PathVariable Long studentId) {
+    public StudentDTO getStudentById(@PathVariable Long studentId) {
         return studentService.getStudentById(studentId);
     }
 

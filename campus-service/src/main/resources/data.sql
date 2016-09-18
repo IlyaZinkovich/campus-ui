@@ -65,6 +65,6 @@ INSERT INTO "STUDENT_GROUPS" (STUDENT_ID, GROUP_ID) VALUES (8, 1);
 INSERT INTO "STUDENT_GROUPS" (STUDENT_ID, GROUP_ID) VALUES (9, 1);
 INSERT INTO "STUDENT_GROUPS" (STUDENT_ID, GROUP_ID) VALUES (10, 1);
 
-INSERT INTO "GROUP_MESSAGE" VALUES (1, 'Hi and welcome to Campus, Meet people that like you too', 1, 1);
-INSERT INTO "GROUP_MESSAGE" VALUES (2, 'Go to the students page and see everyone who lives in Campus', 1, 1);
-INSERT INTO "GROUP_MESSAGE" VALUES (3, 'Is there anyone who likes sports?', 2, 1);
+INSERT INTO "GROUP_MESSAGE" VALUES (1, 'Hi and welcome to Campus, Meet people that like you too', '2016-09-19 00:32:19.505', 1, 1);
+INSERT INTO "GROUP_MESSAGE" VALUES (2, 'Go to the students page and see everyone who lives in Campus', '2016-05-20 00:32:19.505', 1, 1);
+INSERT INTO "GROUP_MESSAGE" VALUES (3, 'Is there anyone who likes sports?', '2016-04-21 00:32:19.505', 2, 1);

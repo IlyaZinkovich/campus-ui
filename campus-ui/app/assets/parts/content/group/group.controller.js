@@ -27,5 +27,18 @@ angular.module('campus').controller('GroupCtrl',
                 $scope.group.imageUrl = $scope.imageUrl;
             });
         };
+
+        $scope.createMessage = function() {
+            var message = {
+                'message': $scope.messageBody,
+                'studentId': $scope.currentUser.id
+            }
+            MessageService.postGroupMessage($scope.group.id, message)
+                .then(function(response) {
+                MessageService.getGroupMessages($scope.group.id).then(function(response) {
+                    $scope.groupMessages = response.data;
+                });
+            });
+        }
     }
 ]);

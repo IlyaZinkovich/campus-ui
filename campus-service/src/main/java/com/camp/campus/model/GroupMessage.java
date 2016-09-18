@@ -1,6 +1,7 @@
 package com.camp.campus.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "GROUP_MESSAGE")
@@ -8,18 +9,19 @@ public class GroupMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUP_MESSAGE_SEQ")
-    @SequenceGenerator(name = "GROUP_MESSAGE_SEQ", sequenceName = "GROUP_MESSAGE_SEQ", allocationSize = 1)
+    @SequenceGenerator(name = "GROUP_MESSAGE_SEQ", sequenceName = "GROUP_MESSAGE_SEQ", allocationSize = 10000)
     private Long id;
 
     private String message;
 
-    @ManyToOne
-    @JoinColumn(name = "GROUP_ID")
+    @ManyToOne(optional = false)
     private CampusGroup group;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "STUDENT_ID")
     private Student from;
+
+    private LocalDateTime postTime;
 
     public GroupMessage() {
     }
@@ -54,6 +56,14 @@ public class GroupMessage {
 
     public void setFrom(Student from) {
         this.from = from;
+    }
+
+    public LocalDateTime getPostTime() {
+        return postTime;
+    }
+
+    public void setPostTime(LocalDateTime postTime) {
+        this.postTime = postTime;
     }
 
     @Override
