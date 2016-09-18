@@ -28,7 +28,7 @@ angular.module('campus').controller('GroupCtrl',
             });
         };
 
-        $scope.createMessage = function() {
+        $scope.postMessage = function() {
             var message = {
                 'message': $scope.messageBody,
                 'studentId': $scope.currentUser.id

@@ -20,13 +20,29 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <div class="panel panel-default" ng-repeat="groupMessage in groupMessages">
-                                            <div class="panel-body">
-                                                <p>
-                                                    {{groupMessage.message}}
-                                                </p>
+                                        <form class="form form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn">
+                                                            <textarea class="form-control" rows="3" ng-model="messageBody"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <button class="btn btn-default pull-right" style="margin-top: 5px" ng-click="postMessage()">Post</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default" ng-repeat="groupMessage in groupMessages">
+                                    <div class="panel-heading">
+                                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                        <span class="pull-right">{{groupMessage.postTime | date:'HH:mm:ss dd-MM-yyyy'}}</span>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>
+                                            {{groupMessage.message}}
+                                        </p>
                                     </div>
                                 </div>
                             </div>

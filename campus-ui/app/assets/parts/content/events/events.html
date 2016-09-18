@@ -5,6 +5,7 @@
             <div class="panel-body">
                 <div class="panel panel-default" ng-repeat="groupMessage in groupMessages">
                     <div class="panel-heading">
+                        <span class="pull-right">{{groupMessage.postTime | date:'HH:mm:ss dd-MM-yyyy'}}</span>
                         <span>{{groupMessage.group.name}}</span>
                     </div>
                     <div class="panel-body">
