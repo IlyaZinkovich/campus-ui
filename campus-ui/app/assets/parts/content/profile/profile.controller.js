@@ -1,6 +1,6 @@
 angular.module('campus').controller('ProfileCtrl', ['$scope', '$rootScope',
-    'localStorageService','StudentService', function($scope, $rootScope,
-        localStorageService, StudentService) {
+    'localStorageService','StudentService', 'GroupService', function($scope, $rootScope,
+        localStorageService, StudentService, GroupService) {
 
     $rootScope.imagePath = $scope.user.imagePath;
 
@@ -11,5 +11,9 @@ angular.module('campus').controller('ProfileCtrl', ['$scope', '$rootScope',
             $rootScope.user.imagePath = $scope.imagePath;
             localStorageService.set('user', $rootScope.user);
         });
-    }
+    };
+
+    GroupService.getStudentGroups($rootScope.user.id, true).then(function(response) {
+        $scope.groupsStudentJoined = response.data;
+    });
 }]);

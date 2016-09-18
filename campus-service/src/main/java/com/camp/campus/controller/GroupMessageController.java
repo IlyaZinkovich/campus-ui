@@ -21,7 +21,7 @@ public class GroupMessageController {
     @Autowired
     private GroupService groupService;
 
-    @RequestMapping(path = "v1/group/messages", method = GET)
+    @RequestMapping(path = "v1/groups/messages", method = GET)
     public List<GroupMessageDTO> getGroupMessages(@RequestParam(required = false) Long studentId) {
         List<Long> studentGroupIds = groupService.getStudentGroupIds(studentId);
         return groupMessageService.getGroupsMessages(studentGroupIds);

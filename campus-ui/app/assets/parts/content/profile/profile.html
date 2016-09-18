@@ -27,6 +27,10 @@
                                     <tr><td>Room</td><td>{{user.roomNumber}}</td></tr>
                                 </table>
                             </div>
+                            <div class="col-md-12">
+                                <h4 style="margin: 5px">Groups: </h2>
+                                <button class="btn btn-default" style="margin: 5px" ng-repeat="group in groupsStudentJoined"> {{group.name}}</button>
+                            </div>
                         </div>
                     </div>
                 </div>
