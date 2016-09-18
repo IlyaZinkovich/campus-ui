@@ -59,12 +59,14 @@ public class GroupMessageServiceImpl implements GroupMessageService {
     }
 
     private GroupMessageDTO groupMessageToDtoWithoutGroup(GroupMessage groupMessage) {
-        return new GroupMessageDTO(groupMessage.getId(), groupMessage.getMessage(), groupMessage.getPostTime());
+        return new GroupMessageDTO(groupMessage.getId(), groupMessage.getMessage(), groupMessage.getPostTime(),
+                groupMessage.getFrom().getFirstName() + " " + groupMessage.getFrom().getLastName());
     }
 
     private GroupMessageDTO groupMessageToDto(GroupMessage groupMessage) {
         return new GroupMessageDTO(groupMessage.getId(), groupMessage.getMessage(),
-                groupToDto(groupMessage.getGroup()), groupMessage.getPostTime());
+                groupToDto(groupMessage.getGroup()), groupMessage.getPostTime(),
+                groupMessage.getFrom().getFirstName() + " " + groupMessage.getFrom().getLastName());
     }
 
     private GroupDTO groupToDto(CampusGroup group) {

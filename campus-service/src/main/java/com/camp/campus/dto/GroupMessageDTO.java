@@ -15,20 +15,24 @@ public class GroupMessageDTO {
 
     private GroupDTO group;
 
+    private String authorName;
+
     public GroupMessageDTO() {
     }
 
-    public GroupMessageDTO(Long id, String message, LocalDateTime postTime) {
+    public GroupMessageDTO(Long id, String message, LocalDateTime postTime, String authorName) {
         this.id = id;
         this.message = message;
         this.postTime = postTime;
+        this.authorName = authorName;
     }
 
-    public GroupMessageDTO(Long id, String message, GroupDTO group, LocalDateTime postTime) {
+    public GroupMessageDTO(Long id, String message, GroupDTO group, LocalDateTime postTime, String authorName) {
         this.id = id;
         this.message = message;
         this.group = group;
         this.postTime = postTime;
+        this.authorName = authorName;
     }
 
     public Long getId() {
@@ -61,5 +65,13 @@ public class GroupMessageDTO {
 
     public void setPostTime(LocalDateTime postTime) {
         this.postTime = postTime;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }
