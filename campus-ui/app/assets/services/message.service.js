@@ -10,7 +10,12 @@ angular.module('campus').factory('MessageService',
         });
     }
 
+    function getGroupMessages(groupId) {
+        return $http.get(SERVER_HOST + '/v1/groups/' + groupId + '/messages');
+    }
+
     return {
-        getMessagesForStudent: getMessagesForStudent
+        getMessagesForStudent: getMessagesForStudent,
+        getGroupMessages: getGroupMessages
     };
 }]);

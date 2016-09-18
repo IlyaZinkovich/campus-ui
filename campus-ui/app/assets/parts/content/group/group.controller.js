@@ -1,7 +1,9 @@
 angular.module('campus').controller('GroupCtrl',
-    ['$scope', '$state', '$stateParams', '$rootScope', 'localStorageService', 'GroupService',
+    ['$scope', '$state', '$stateParams', '$rootScope', 'localStorageService',
+    'GroupService', 'MessageService',
 
-    function($scope, $state, $stateParams, $rootScope, localStorageService, GroupService) {
+    function($scope, $state, $stateParams, $rootScope, localStorageService,
+        GroupService, MessageService) {
 
         $scope.currentUser = localStorageService.get('user');
 
@@ -14,6 +16,9 @@ angular.module('campus').controller('GroupCtrl',
             .then(function(response) {
             $scope.group = response.data;
             $scope.imageUrl = $scope.group.imageUrl;
+            MessageService.getGroupMessages($scope.group.id).then(function(response) {
+                $scope.groupMessages = response.data;
+            });
         });
 
         $scope.changeImage = function() {

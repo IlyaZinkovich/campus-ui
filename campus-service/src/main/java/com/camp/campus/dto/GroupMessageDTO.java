@@ -1,5 +1,8 @@
 package com.camp.campus.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GroupMessageDTO {
 
     private Long id;
@@ -9,6 +12,11 @@ public class GroupMessageDTO {
     private GroupDTO group;
 
     public GroupMessageDTO() {
+    }
+
+    public GroupMessageDTO(Long id, String message) {
+        this.id = id;
+        this.message = message;
     }
 
     public GroupMessageDTO(Long id, String message, GroupDTO group) {

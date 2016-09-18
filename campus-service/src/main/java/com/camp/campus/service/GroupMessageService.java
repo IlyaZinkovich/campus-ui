@@ -7,4 +7,6 @@ import java.util.List;
 public interface GroupMessageService {
 
     List<GroupMessageDTO> getGroupsMessages(List<Long> studentGroupIds);
+
+    List<GroupMessageDTO> getGroupMessages(Long groupId);
 }

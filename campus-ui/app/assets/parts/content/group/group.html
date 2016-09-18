@@ -18,6 +18,17 @@
                     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                         <div class="row">
                             <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="panel panel-default" ng-repeat="groupMessage in groupMessages">
+                                            <div class="panel-body">
+                                                <p>
+                                                    {{groupMessage.message}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

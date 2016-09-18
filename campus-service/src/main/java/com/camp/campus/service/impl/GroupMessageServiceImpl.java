@@ -26,6 +26,16 @@ public class GroupMessageServiceImpl implements GroupMessageService {
                 .stream().map(this::groupMessageToDto).collect(Collectors.toList());
     }
 
+    @Override
+    public List<GroupMessageDTO> getGroupMessages(Long groupId) {
+        return groupMessageRepository.getGroupMessages(groupId)
+                .stream().map(this::groupMessageToDtoWithoutGroup).collect(Collectors.toList());
+    }
+
+    private GroupMessageDTO groupMessageToDtoWithoutGroup(GroupMessage groupMessage) {
+        return new GroupMessageDTO(groupMessage.getId(), groupMessage.getMessage());
+    }
+
     private GroupMessageDTO groupMessageToDto(GroupMessage groupMessage) {
         return new GroupMessageDTO(groupMessage.getId(), groupMessage.getMessage(),
                 groupToDto(groupMessage.getGroup()));
