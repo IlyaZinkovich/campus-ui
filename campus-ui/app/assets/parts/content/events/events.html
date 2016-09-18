@@ -3,16 +3,13 @@
     <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="panel panel-default" ng-repeat="event in campusEvents">
+                <div class="panel panel-default" ng-repeat="groupMessage in groupMessages">
                     <div class="panel-heading">
-                        <button type="button" class="btn btn-danger btn-xs pull-right">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
-                        <span>{{event.title}}</span>
+                        <span>{{groupMessage.group.name}}</span>
                     </div>
                     <div class="panel-body">
                         <p>
-                            {{event.body}}
+                            {{groupMessage.message}}
                         </p>
                     </div>
                 </div>
