@@ -8,5 +8,5 @@ public interface GroupService {
 
     List<Long> getStudentGroupIds(Long studentId);
 
-    List<GroupDTO> getStudentGroups(Long studentId);
+    List<GroupDTO> getGroups(Long studentId, Boolean joined);
 }

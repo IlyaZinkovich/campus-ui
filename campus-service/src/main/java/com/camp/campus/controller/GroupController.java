@@ -18,7 +18,8 @@ public class GroupController {
     private GroupService groupService;
 
     @RequestMapping(path = "v1/groups", method = GET)
-    public List<GroupDTO> getGroups(@RequestParam(required = false) Long studentId) {
-        return groupService.getStudentGroups(studentId);
+    public List<GroupDTO> getGroups(@RequestParam(required = false) Long studentId,
+                                    @RequestParam(required = false) Boolean joined) {
+        return groupService.getGroups(studentId, joined);
     }
 }

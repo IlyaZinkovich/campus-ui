@@ -1,5 +1,8 @@
 package com.camp.campus.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GroupDTO {
 
     private Long id;

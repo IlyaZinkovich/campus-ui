@@ -1,6 +1,8 @@
 package com.camp.campus.service.impl;
 
+import com.camp.campus.dto.GroupDTO;
 import com.camp.campus.dto.GroupMessageDTO;
+import com.camp.campus.model.CampusGroup;
 import com.camp.campus.model.GroupMessage;
 import com.camp.campus.repository.GroupMessageRepository;
 import com.camp.campus.service.GroupMessageService;
@@ -25,6 +27,11 @@ public class GroupMessageServiceImpl implements GroupMessageService {
     }
 
     private GroupMessageDTO groupMessageToDto(GroupMessage groupMessage) {
-        return new GroupMessageDTO(groupMessage.getId(), groupMessage.getMessage());
+        return new GroupMessageDTO(groupMessage.getId(), groupMessage.getMessage(),
+                groupToDto(groupMessage.getGroup()));
+    }
+
+    private GroupDTO groupToDto(CampusGroup group) {
+        return new GroupDTO(group.getId(), group.getName());
     }
 }

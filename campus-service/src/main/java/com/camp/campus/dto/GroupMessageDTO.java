@@ -6,12 +6,15 @@ public class GroupMessageDTO {
 
     private String message;
 
+    private GroupDTO group;
+
     public GroupMessageDTO() {
     }
 
-    public GroupMessageDTO(Long id, String message) {
+    public GroupMessageDTO(Long id, String message, GroupDTO group) {
         this.id = id;
         this.message = message;
+        this.group = group;
     }
 
     public Long getId() {
@@ -28,5 +31,13 @@ public class GroupMessageDTO {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public GroupDTO getGroup() {
+        return group;
+    }
+
+    public void setGroup(GroupDTO group) {
+        this.group = group;
     }
 }
