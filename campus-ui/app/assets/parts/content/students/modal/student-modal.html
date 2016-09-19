@@ -8,14 +8,22 @@
                 <img src="{{student.imagePath}}" class="img-thumbnail">
             </div>
             <div class="col-lg-8">
-                <table class="table">
-                <tr><td>Age</td><td>{{student.birthDate | ageFilter}}</td></tr>
-                <tr><td>Faculty</td><td>{{student.faculty}}</td></tr>
-                <tr><td>Speciality</td><td>{{student.speciality}}</td></tr>
-                <tr><td>Course</td><td>{{student.course}}</td></tr>
-                <tr><td>Group</td><td>{{student.group}}</td></tr>
-                <tr><td>Room</td><td>{{student.roomNumber}}</td></tr>
-                </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tr><td>Age</td><td>{{student.birthDate | ageFilter}}</td></tr>
+                            <tr><td>Faculty</td><td>{{student.faculty}}</td></tr>
+                            <tr><td>Speciality</td><td>{{student.speciality}}</td></tr>
+                            <tr><td>Course</td><td>{{student.course}}</td></tr>
+                            <tr><td>Group</td><td>{{student.group}}</td></tr>
+                            <tr><td>Room</td><td>{{student.roomNumber}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <h4 style="margin: 5px">Groups: </h2>
+                        <button class="btn btn-default" style="margin: 5px" ng-click="goToGroup(group.id)" ng-repeat="group in groupsStudentJoined"> {{group.name}}</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,8 @@
-angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService', '$uibModalInstance', 'localStorageService', 'student',
+angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService',
+    '$uibModalInstance', 'localStorageService', 'student', 'GroupService', '$state',
 
-    function($scope, LikeService, $uibModalInstance, localStorageService, student) {
+    function($scope, LikeService, $uibModalInstance, localStorageService,
+        student, GroupService, $state) {
 
         $scope.student = student;
         $scope.currentUser = localStorageService.get('user');
@@ -24,5 +26,13 @@ angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService
             $uibModalInstance.dismiss();
         };
 
+        GroupService.getStudentGroups(student.id, true).then(function(response) {
+            $scope.groupsStudentJoined = response.data;
+        });
+
+        $scope.goToGroup = function(groupId) {
+            $scope.close();
+            $state.go('group', {'groupId': groupId});
+        }
     }
 ]);
