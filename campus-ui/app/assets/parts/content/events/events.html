@@ -1,5 +1,4 @@
 <div class="row">
-    <div ng-if="likeStudents.length === 0" class="col-md-1"></div>
     <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -17,9 +16,10 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-12 col-xs-12 pull-right" ng-if="likeStudents.length !== 0">
+    <div class="col-md-3 col-sm-12 col-xs-12 pull-right">
         <div class="panel panel-default" style="padding: 5px">
-            <h3 class="text-center">They like you too</h1>
+            <h3 class="text-center" ng-show="likeStudents.length !== 0">They like you too</h1>
+            <h3 class="text-center" ng-hide="likeStudents.length !== 0" style="margin-bottom: 20px">There will be people that like you too</h1>
             <div class="panel-body" style="padding: 0">
                 <div ng-repeat="student in likeStudents" class="row" style="margin: 5px; paddding: 5px" data-toggle="modal" data-target="#myModal">
                     <div class="col-md-12 card" ng-click="showUserModal(student.id, lg)" style="border: 1px solid lightgray;">
