@@ -13,4 +13,8 @@ public interface GroupService {
     GroupDTO getGroup(Long groupId);
 
     void updateGroupImage(Long groupId, String imageUrl);
+
+    void deleteStudentFromGroup(Long groupId, Long studentId);
+
+    void addStudentToGroup(Long groupId, Long studentId);
 }

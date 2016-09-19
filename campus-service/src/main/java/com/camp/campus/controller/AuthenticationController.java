@@ -16,7 +16,6 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
-
     @RequestMapping(path = "v1/auth", method = POST)
     public StudentDTO authenticate(@RequestBody UserDTO user) {
         return authenticationService.authenticate(user);

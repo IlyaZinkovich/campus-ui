@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class GroupController {
@@ -30,5 +29,15 @@ public class GroupController {
     @RequestMapping(path = "v1/groups/{groupId}/image", method = PUT)
     public void updateGroupImage(@PathVariable("groupId") Long groupId, @RequestBody String imageUrl) {
         groupService.updateGroupImage(groupId, imageUrl);
+    }
+
+    @RequestMapping(path = "v1/groups/{groupId}/students", method = PUT)
+    public void deleteStudentFromGroup(@PathVariable("groupId") Long groupId, @RequestParam("studentId") Long studentId,
+                                       @RequestParam("action") String action) {
+        if ("DELETE".equals(action)) {
+            groupService.deleteStudentFromGroup(groupId, studentId);
+        } else if ("ADD".equals(action)) {
+            groupService.addStudentToGroup(groupId, studentId);
+        }
     }
 }

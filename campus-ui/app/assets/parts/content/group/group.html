@@ -7,18 +7,24 @@
             <div class="panel-body">
                 <div class="row" style="margin: 0">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="hovereffect">
-                            <img class="img-responsive img-thumbnail hovereffect" src="{{group.imageUrl}}" alt="">
-                            <div class="overlay">
-                               <h2>Change group avatar</h2>
-                               <a class="info" href="#" data-toggle="modal" data-target="#groupAvatarModal">Edit</a>
+                        <div class="row">
+                            <div class="hovereffect">
+                                <img class="img-responsive img-thumbnail hovereffect" src="{{group.imageUrl}}" alt="">
+                                <div class="overlay">
+                                   <h2>Change group avatar</h2>
+                                   <a class="info" href="#" data-toggle="modal" data-target="#groupAvatarModal">Edit</a>
+                                </div>
                             </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px">
+                            <button class="btn btn-block btn-primary" ng-hide="studentInGroup" style="margin-bottom: 5px" ng-click="join()">Join</button>
+                            <button class="btn btn-block btn-danger" ng-show="studentInGroup" style="margin-top: 0; margin-bottom: 5px" ng-click="leave()">Leave</button>
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" ng-show="studentInGroup">
                                     <div class="panel-body">
                                         <form class="form form-horizontal">
                                             <div class="form-group">
@@ -36,7 +42,7 @@
                                 </div>
                                 <div class="panel panel-default" ng-repeat="groupMessage in groupMessages">
                                     <div class="panel-heading">
-                                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                        <span>{{groupMessage.authorName}}</span>
                                         <span class="pull-right">{{groupMessage.postTime | date:'HH:mm:ss dd-MM-yyyy'}}</span>
                                     </div>
                                     <div class="panel-body">

@@ -2,7 +2,9 @@ package com.camp.campus.service.impl;
 
 import com.camp.campus.dto.GroupDTO;
 import com.camp.campus.model.CampusGroup;
+import com.camp.campus.model.Student;
 import com.camp.campus.repository.GroupRepository;
+import com.camp.campus.repository.StudentRepository;
 import com.camp.campus.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class GroupServiceImpl implements GroupService {
 
     @Autowired
     private GroupRepository groupRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     @Override
     public List<Long> getStudentGroupIds(Long studentId) {
@@ -46,6 +51,23 @@ public class GroupServiceImpl implements GroupService {
     public void updateGroupImage(Long groupId, String imageUrl) {
         CampusGroup group = groupRepository.findOne(groupId);
         group.setImageUrl(imageUrl);
+        groupRepository.save(group);
+    }
+
+    @Override
+    public void deleteStudentFromGroup(Long groupId, Long studentId) {
+        CampusGroup group = groupRepository.findOne(groupId);
+        Student student = studentRepository.findOne(studentId);
+        group.getStudents().remove(student);
+        groupRepository.save(group);
+    }
+
+    @Override
+    public void addStudentToGroup(Long groupId, Long studentId) {
+        CampusGroup group = groupRepository.findOne(groupId);
+        Student student = studentRepository.findOne(studentId);
+        if (!group.getStudents().contains(student))
+            group.getStudents().add(student);
         groupRepository.save(group);
     }
 
