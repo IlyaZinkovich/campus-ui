@@ -1,10 +1,12 @@
 package com.camp.campus.repository;
 
 import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.camp.campus.repository")
@@ -12,6 +14,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan(basePackages = {"com.camp.campus.model"})
 @EnableTransactionManagement
 public class RepositoryConfig {
+
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 //    @Resource
 //    private Environment env;

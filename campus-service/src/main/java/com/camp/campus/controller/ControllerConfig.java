@@ -44,9 +44,4 @@ public class ControllerConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 }

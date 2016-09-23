@@ -2,6 +2,7 @@ package com.camp.campus.controller;
 
 import com.camp.campus.dto.SearchCriteria;
 import com.camp.campus.dto.StudentDTO;
+import com.camp.campus.service.LikeService;
 import com.camp.campus.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,10 +22,7 @@ public class StudentController {
     private StudentService studentService;
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @Value("${relationship-server.url}")
-    private String relationshipServerUrl;
+    private LikeService likeService;
 
     @RequestMapping(path = "v1/students", method = POST)
     public Long createStudent(@RequestBody StudentDTO studentDTO) {
@@ -57,7 +55,7 @@ public class StudentController {
 
     @RequestMapping(path = "v1/likes/students/{studentId}", method = GET)
     public List<StudentDTO> findStudentsWithMutualLike(@PathVariable("studentId") Long studentId) {
-        Long[] studentIdsArray = restTemplate.getForObject(relationshipServerUrl + "/v1/likes/students/" + studentId, Long[].class);
-        return studentService.getStudentsByIds(Arrays.asList(studentIdsArray));
+        List<Long> studentIds = likeService.findStudentIdsWithMutualLike(studentId);
+        return studentService.getStudentsByIds(studentIds);
     }
 }

@@ -39,6 +39,7 @@ public class StudentServiceImpl implements StudentService {
                 .imagePath(studentDTO.getImagePath())
                 .build();
         Room room = roomRepository.findByRoomNumber(studentDTO.getRoomNumber());
+        if (room.getCapacity() == room.getStudents().size()) throw new RuntimeException("Room is full");
         student.setRoom(room);
         studentRepository.save(student);
         room.getStudents().add(student);
