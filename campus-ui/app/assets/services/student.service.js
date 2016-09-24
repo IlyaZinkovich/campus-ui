@@ -13,7 +13,8 @@ angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST',
                 course: criteria.course,
                 group: criteria.group,
                 page: page,
-                size: size
+                size: size,
+                studentIds: criteria.studentIds,
             }
         });
     }
@@ -28,7 +29,7 @@ angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST',
 
     function deleteStudent(studentId) {
         return $http({method: 'DELETE', url:
-            SERVER_HOST + '/v1/students/' + studentId    
+            SERVER_HOST + '/v1/students/' + studentId
         });
     }
 

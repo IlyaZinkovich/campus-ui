@@ -33,5 +33,6 @@
         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
         Like
     </button>
-    <button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+    <button ng-hide="toggleLikesModal" class="btn btn-warning" data-dismiss="modal" type="button" ng-click="close()">Close</button>
+    <button ng-show="toggleLikesModal" class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#likeModal" type="button" ng-click="close()">Close</button>
 </div>

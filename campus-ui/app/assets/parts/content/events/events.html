@@ -11,7 +11,7 @@
             <h3 class="text-center" ng-show="likeStudents.length !== 0">They like you too</h1>
             <h3 class="text-center" ng-hide="likeStudents.length !== 0" style="margin-bottom: 20px">There will be people that like you too</h1>
             <div class="panel-body" style="padding: 0">
-                <div ng-repeat="student in likeStudents" class="row" style="margin: 5px; paddding: 5px" data-toggle="modal" data-target="#myModal">
+                <div ng-repeat="student in likeStudents" class="row" style="margin: 5px; paddding: 5px">
                     <div class="col-md-12 card" ng-click="showUserModal(student.id, lg)" style="border: 1px solid lightgray;">
                         <div style="padding: 5px; border: 1px solid lightgray; margin-top:5px;">
                             <div style="position:relative; overflow:hidden; padding-bottom:100%;">

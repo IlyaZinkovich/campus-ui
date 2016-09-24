@@ -5,7 +5,8 @@ angular.module('campus').directive('groupMessages', function (){
             messages: '='
         },
         templateUrl: 'assets/parts/content/messages/messages.html',
-        controller: function($scope, $state, localStorageService, LikeService) {
+        controller: function($scope, $state, localStorageService, LikeService,
+            StudentService, UtilService) {
 
             $scope.currentUser = localStorageService.get('user');
 
@@ -25,6 +26,26 @@ angular.module('campus').directive('groupMessages', function (){
                     })
                 });
             }
+
+            $scope.findStudentsForMessageLikes = function(groupMessage) {
+                if (groupMessage.likesStudentIds.length > 0) {
+                    StudentService.getAll({
+                        studentIds: groupMessage.likesStudentIds
+                    }, 0, 20).then(function(response) {
+                        $scope.studentForMessageLikes = response.data;
+                    })
+                } else {
+                    $scope.studentForMessageLikes = []
+                }
+            }
+
+            $scope.showUserModal = function (userId, size) {
+                StudentService.get(userId).then(function(data) {
+                    UtilService.showUserModal(data.data, 'lg', true);
+                }, function(error) {
+                    console.log('error');
+                });
+            };
         }
     }
 });
