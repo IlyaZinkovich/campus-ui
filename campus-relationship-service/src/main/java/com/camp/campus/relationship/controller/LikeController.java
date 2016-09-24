@@ -29,6 +29,6 @@ public class LikeController {
     @RequestMapping(path = "v1/likes", method = GET)
     public boolean checkIfLikeExists(@RequestParam("from") Long from, @RequestParam("to") Long to,
                            @RequestParam("type") String type) {
-        return likeService.checkIfLikeExists(from, to, type);
+        return likeService.checkIfLikeExists(new LikeDTO(from, to, LikeDTO.LikeType.valueOf(type)));
     }
 }

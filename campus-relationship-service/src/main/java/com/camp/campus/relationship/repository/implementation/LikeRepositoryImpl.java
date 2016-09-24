@@ -37,8 +37,11 @@ public class LikeRepositoryImpl implements LikeRepository {
     public List<Long> findStudentIdsWithMutualLike(Long studentId) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("relationalId", studentId);
+        parameters.put("likeNodeType", LikeNode.LikeNodeType.STUDENT);
         return ((List<LikeNode>) neo4jTemplate.queryForObjects(LikeNode.class,
-                "MATCH (a {relationalId: {relationalId}})-[:LIKES]->(b)-[:LIKES]->(a) RETURN b",
+                "MATCH (a {likeNodeType: {likeNodeType}, relationalId: {relationalId}})" +
+                        "-[:LIKES]->(b {likeNodeType: {likeNodeType}})" +
+                        "-[:LIKES]->(a {likeNodeType: {likeNodeType}}) RETURN b",
                 parameters)).stream().map(LikeNode::getRelationalId).collect(Collectors.toList());
     }
 
@@ -56,13 +59,19 @@ public class LikeRepositoryImpl implements LikeRepository {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("from", like.getFrom().getRelationalId());
         parameters.put("to", like.getTo().getRelationalId());
+        parameters.put("fromLikeNodeType", like.getFrom().getLikeNodeType());
+        parameters.put("toLikeNodeType", like.getTo().getLikeNodeType());
         return neo4jTemplate.queryForObjects(Like.class,
-                "MATCH (from {relationalId:{from}})-[likes:LIKES]->(to {relationalId:{to}}) RETURN likes", parameters);
+                "MATCH (from {likeNodeType: {fromLikeNodeType}, relationalId:{from}})" +
+                        "-[likes:LIKES]->(to {likeNodeType: {toLikeNodeType}, relationalId:{to}}) " +
+                        "RETURN likes", parameters);
     }
 
     private LikeNode findLikeNode(LikeNode likeNode) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("relationalId", likeNode.getRelationalId());
-        return neo4jTemplate.queryForObject(LikeNode.class, "MATCH (node {relationalId:{relationalId}}) RETURN node", parameters);
+        parameters.put("likeNodeType", likeNode.getLikeNodeType());
+        return neo4jTemplate.queryForObject(LikeNode.class,
+                "MATCH (node {likeNodeType: {likeNodeType}, relationalId:{relationalId}}) RETURN node", parameters);
     }
 }

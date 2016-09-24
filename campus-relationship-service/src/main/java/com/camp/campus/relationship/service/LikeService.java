@@ -10,5 +10,5 @@ public interface LikeService {
 
     List<Long> findStudentIdsWithMutualLike(Long studentId);
 
-    boolean checkIfLikeExists(Long from, Long to, String type);
+    boolean checkIfLikeExists(LikeDTO likeDTO);
 }

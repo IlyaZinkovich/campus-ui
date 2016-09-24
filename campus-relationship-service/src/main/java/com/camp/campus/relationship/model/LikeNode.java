@@ -11,6 +11,12 @@ public class LikeNode {
 
     private Long relationalId;
 
+    private LikeNodeType likeNodeType;
+
+    public enum LikeNodeType {
+        STUDENT, MESSAGE
+    }
+
     public LikeNode() {
     }
 
@@ -34,6 +40,14 @@ public class LikeNode {
         this.relationalId = relationalId;
     }
 
+    public LikeNodeType getLikeNodeType() {
+        return likeNodeType;
+    }
+
+    public void setLikeNodeType(LikeNodeType likeNodeType) {
+        this.likeNodeType = likeNodeType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,12 +55,16 @@ public class LikeNode {
 
         LikeNode likeNode = (LikeNode) o;
 
-        return relationalId != null ? relationalId.equals(likeNode.relationalId) : likeNode.relationalId == null;
+        if (relationalId != null ? !relationalId.equals(likeNode.relationalId) : likeNode.relationalId != null)
+            return false;
+        return likeNodeType == likeNode.likeNodeType;
 
     }
 
     @Override
     public int hashCode() {
-        return relationalId != null ? relationalId.hashCode() : 0;
+        int result = relationalId != null ? relationalId.hashCode() : 0;
+        result = 31 * result + (likeNodeType != null ? likeNodeType.hashCode() : 0);
+        return result;
     }
 }

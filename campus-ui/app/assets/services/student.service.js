@@ -27,7 +27,9 @@ angular.module('campus').factory('StudentService', ['$http', 'SERVER_HOST',
     }
 
     function deleteStudent(studentId) {
-        return $http.delete(SERVER_HOST + '/v1/students/' + studentId);
+        return $http({method: 'DELETE', url:
+            SERVER_HOST + '/v1/students/' + studentId    
+        });
     }
 
     function updateStudent(student) {

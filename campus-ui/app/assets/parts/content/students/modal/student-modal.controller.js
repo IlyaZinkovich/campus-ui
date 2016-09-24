@@ -7,7 +7,7 @@ angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService
         $scope.student = student;
         $scope.currentUser = localStorageService.get('user');
 
-        LikeService.checkIfLikeExists($scope.currentUser.id, $scope.student.id, "STUDENT").then(function(response) {
+        LikeService.checkIfLikeExists($scope.currentUser.id, $scope.student.id, "STUDENT_TO_STUDENT").then(function(response) {
             $scope.checkIfLikeExists = response.data;
         });
 
@@ -15,7 +15,7 @@ angular.module('campus').controller('StudentsModalCtrl', ['$scope', 'LikeService
             LikeService.like({
                     from: $scope.currentUser.id,
                     to: student.id,
-                    type: "STUDENT"
+                    type: "STUDENT_TO_STUDENT"
                 })
                 .then(function(response) {
                     $scope.checkIfLikeExists = response.data;

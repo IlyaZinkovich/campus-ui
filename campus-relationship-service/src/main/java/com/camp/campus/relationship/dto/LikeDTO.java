@@ -4,12 +4,16 @@ public class LikeDTO {
 
     private Long from;
     private Long to;
-    private String type;
+    private LikeType type;
+
+    public enum LikeType {
+        STUDENT_TO_STUDENT, STUDENT_TO_MESSAGE
+    }
 
     public LikeDTO() {
     }
 
-    public LikeDTO(Long from, Long to, String type) {
+    public LikeDTO(Long from, Long to, LikeType type) {
         this.from = from;
         this.to = to;
         this.type = type;
@@ -31,11 +35,11 @@ public class LikeDTO {
         this.to = to;
     }
 
-    public String getType() {
+    public LikeType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(LikeType type) {
         this.type = type;
     }
 }
