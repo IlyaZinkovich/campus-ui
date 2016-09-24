@@ -5,12 +5,8 @@ import com.camp.campus.dto.StudentDTO;
 import com.camp.campus.service.LikeService;
 import com.camp.campus.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
