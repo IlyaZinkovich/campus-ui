@@ -40,17 +40,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="panel panel-default" ng-repeat="groupMessage in groupMessages">
-                                    <div class="panel-heading">
-                                        <span>{{groupMessage.authorName}}</span>
-                                        <span class="pull-right">{{groupMessage.postTime | date:'HH:mm:ss dd-MM-yyyy'}}</span>
-                                    </div>
-                                    <div class="panel-body">
-                                        <p>
-                                            {{groupMessage.message}}
-                                        </p>
-                                    </div>
-                                </div>
+                                <group-messages messages="groupMessages"></group-messages>
                             </div>
                         </div>
                     </div>

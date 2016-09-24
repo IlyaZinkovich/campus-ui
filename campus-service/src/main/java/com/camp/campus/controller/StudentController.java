@@ -39,7 +39,11 @@ public class StudentController {
                                         @RequestParam(required = false) Integer course,
                                         @RequestParam(required = false) Integer group,
                                         @RequestParam(required = false) Integer page,
-                                        @RequestParam(required = false) Integer size) {
+                                        @RequestParam(required = false) Integer size,
+                                        @RequestParam(required = false) List<Long> studentIds) {
+        if (studentIds != null && !studentIds.isEmpty()) {
+            return studentService.getStudentsByIds(studentIds);
+        }
         return studentService.getStudents(new SearchCriteria(name, gender, ageLow, ageHigh, faculty, speciality, course, group), page, size);
     }
 

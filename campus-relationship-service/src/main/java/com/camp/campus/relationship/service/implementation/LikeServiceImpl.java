@@ -33,6 +33,11 @@ public class LikeServiceImpl implements LikeService {
         return likeRepository.checkIfLikeExists(likeDtoToLike(likeDTO));
     }
 
+    @Override
+    public List<Long> findStudentIdsForMessageLikes(Long messageId) {
+        return likeRepository.findStudentIdsForMessageLikes(messageId);
+    }
+
     private Like likeDtoToLike(LikeDTO likeDTO) {
         Like like = new Like(likeDTO.getFrom(), likeDTO.getTo());
         like.getFrom().setLikeNodeType(LikeNode.LikeNodeType.STUDENT);

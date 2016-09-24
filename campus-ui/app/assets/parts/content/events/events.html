@@ -2,17 +2,7 @@
     <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="panel panel-default" ng-repeat="groupMessage in groupMessages">
-                    <div class="panel-heading">
-                        <span class="pull-right">{{groupMessage.postTime | date:'HH:mm:ss dd-MM-yyyy'}}</span>
-                        <span>{{groupMessage.authorName + ' from ' + groupMessage.group.name}}</span>
-                    </div>
-                    <div class="panel-body">
-                        <p>
-                            {{groupMessage.message}}
-                        </p>
-                    </div>
-                </div>
+                <group-messages messages="groupMessages"></group-messages>
             </div>
         </div>
     </div>

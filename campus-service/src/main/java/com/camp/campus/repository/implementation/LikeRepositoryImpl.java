@@ -24,4 +24,10 @@ public class LikeRepositoryImpl implements LikeRepository {
         Long[] studentIdsArray = restTemplate.getForObject(relationshipServerUrl + "/v1/likes/students/" + studentId, Long[].class);
         return asList(studentIdsArray);
     }
+
+    @Override
+    public List<Long> findStudentIdsForMessageLikes(Long messageId) {
+        Long[] studentIdsArray = restTemplate.getForObject(relationshipServerUrl + "/v1/likes/students?messageId=" + messageId, Long[].class);
+        return asList(studentIdsArray);
+    }
 }

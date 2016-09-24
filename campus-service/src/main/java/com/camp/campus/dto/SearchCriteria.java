@@ -1,5 +1,7 @@
 package com.camp.campus.dto;
 
+import java.util.List;
+
 public class SearchCriteria {
 
     private String name;

@@ -31,4 +31,9 @@ public class LikeController {
                            @RequestParam("type") String type) {
         return likeService.checkIfLikeExists(new LikeDTO(from, to, LikeDTO.LikeType.valueOf(type)));
     }
+
+    @RequestMapping(path = "v1/likes/students", method = GET)
+    public List<Long> findStudentIdsForMessageLikes(@RequestParam("messageId") Long messageId) {
+        return likeService.findStudentIdsForMessageLikes(messageId);
+    }
 }

@@ -7,6 +7,7 @@ import com.camp.campus.model.CampusGroup;
 import com.camp.campus.model.GroupMessage;
 import com.camp.campus.repository.GroupMessageRepository;
 import com.camp.campus.repository.GroupRepository;
+import com.camp.campus.repository.LikeRepository;
 import com.camp.campus.repository.StudentRepository;
 import com.camp.campus.service.GroupMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +33,30 @@ public class GroupMessageServiceImpl implements GroupMessageService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private LikeRepository likeRepository;
+
     @Override
     public List<GroupMessageDTO> getGroupsMessages(List<Long> groupIds, Integer page, Integer size) {
         PageRequest request = new PageRequest(page, size, Sort.Direction.DESC, "postTime");
-        return groupMessageRepository.getGroupsMessages(groupIds, request)
+        List<GroupMessageDTO> groupMessages = groupMessageRepository.getGroupsMessages(groupIds, request)
                 .stream().map(this::groupMessageToDto).collect(Collectors.toList());
+        groupMessages.forEach(this::findMessageLikes);
+        return groupMessages;
+    }
+
+    private void findMessageLikes(GroupMessageDTO message) {
+        List<Long> studentIds = likeRepository.findStudentIdsForMessageLikes(message.getId());
+        message.setLikesStudentIds(studentIds);
     }
 
     @Override
     public List<GroupMessageDTO> getGroupMessages(Long groupId, Integer page, Integer size) {
         PageRequest request = new PageRequest(page, size, Sort.Direction.DESC, "postTime");
-        return groupMessageRepository.getGroupMessages(groupId, request)
+        List<GroupMessageDTO> groupMessages = groupMessageRepository.getGroupMessages(groupId, request)
                 .stream().map(this::groupMessageToDtoWithoutGroup).collect(Collectors.toList());
+        groupMessages.forEach(this::findMessageLikes);
+        return groupMessages;
     }
 
     @Override

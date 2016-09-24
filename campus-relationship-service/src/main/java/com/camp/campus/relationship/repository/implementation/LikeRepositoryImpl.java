@@ -55,6 +55,18 @@ public class LikeRepositoryImpl implements LikeRepository {
         return false;
     }
 
+    @Override
+    public List<Long> findStudentIdsForMessageLikes(Long messageId) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("messageId", messageId);
+        parameters.put("fromLikeNodeType", LikeNode.LikeNodeType.STUDENT);
+        parameters.put("toLikeNodeType", LikeNode.LikeNodeType.MESSAGE);
+        return (List<Long>) neo4jTemplate.queryForObjects(Long.class,
+                "MATCH (from {likeNodeType: {fromLikeNodeType}})" +
+                        "-[likes:LIKES]->(to {likeNodeType: {toLikeNodeType}, relationalId:{messageId}}) " +
+                        "RETURN from.relationalId", parameters);
+    }
+
     private Iterable<Like> getLikesIfExist(Like like) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("from", like.getFrom().getRelationalId());

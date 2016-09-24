@@ -17,9 +17,19 @@ angular.module('campus').factory('LikeService', ['$http', 'SERVER_HOST', 'RELATI
             }
         });
     }
+
+    function findStudentIdsForMessageLikes(messageId) {
+        return $http.get(RELATIONSHIP_SERVER_HOST + '/v1/likes/students', {
+            params : {
+                messageId : messageId
+            }
+        })
+    }
+
     return {
         like: like,
         getLikeStudents: getLikeStudents,
-        checkIfLikeExists: checkIfLikeExists
+        checkIfLikeExists: checkIfLikeExists,
+        findStudentIdsForMessageLikes: findStudentIdsForMessageLikes
     };
 }]);

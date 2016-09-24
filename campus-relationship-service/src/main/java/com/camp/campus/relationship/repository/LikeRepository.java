@@ -11,4 +11,6 @@ public interface LikeRepository {
     List<Long> findStudentIdsWithMutualLike(Long studentId);
 
     boolean checkIfLikeExists(Like like);
+
+    List<Long> findStudentIdsForMessageLikes(Long messageId);
 }

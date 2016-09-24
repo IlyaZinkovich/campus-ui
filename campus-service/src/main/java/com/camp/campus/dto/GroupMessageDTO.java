@@ -3,6 +3,7 @@ package com.camp.campus.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GroupMessageDTO {
@@ -16,6 +17,8 @@ public class GroupMessageDTO {
     private GroupDTO group;
 
     private String authorName;
+
+    private List<Long> likesStudentIds;
 
     public GroupMessageDTO() {
     }
@@ -73,5 +76,13 @@ public class GroupMessageDTO {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public List<Long> getLikesStudentIds() {
+        return likesStudentIds;
+    }
+
+    public void setLikesStudentIds(List<Long> likesStudentIds) {
+        this.likesStudentIds = likesStudentIds;
     }
 }

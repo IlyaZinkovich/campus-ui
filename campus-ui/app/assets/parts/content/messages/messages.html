@@ -1,0 +1,23 @@
+<div class="panel panel-default" ng-repeat="groupMessage in messages">
+    <div class="panel-heading">
+        <span class="pull-right">{{groupMessage.postTime | date:'HH:mm:ss dd-MM-yyyy'}}</span>
+        <span>{{groupMessage.authorName + (groupMessage.group.name == null ? ' from ' + groupMessage.group.name : '')}}</span>
+    </div>
+    <div class="panel-body">
+        <p>
+            {{groupMessage.message}}
+        </p>
+        <div class="pull-right">
+            <button type="button"
+                    ng-click="likeMessage(groupMessage)"
+                    ng-class="checkIfStudentLikesMessage(groupMessage) ? 'btn btn-primary' : 'btn btn-default'">
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                Like
+            </button>
+            <button type="button"
+                    ng-class="checkIfStudentLikesMessage(groupMessage) ? 'btn btn-primary' : 'btn btn-default'" style="margin-left: -5px">
+                {{groupMessage.likesStudentIds.length}}
+            </button>
+        </div>
+    </div>
+</div>
