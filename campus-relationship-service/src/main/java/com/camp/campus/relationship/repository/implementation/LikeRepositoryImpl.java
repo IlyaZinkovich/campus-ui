@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -29,6 +30,7 @@ public class LikeRepositoryImpl implements LikeRepository {
         if (from != null) like.setFrom(from);
         LikeNode to = findLikeNode(like.getTo());
         if (to != null) like.setTo(to);
+        like.setTimestamp(LocalDateTime.now().toString());
         neo4jTemplate.save(like);
         return true;
     }
@@ -41,7 +43,7 @@ public class LikeRepositoryImpl implements LikeRepository {
         return ((List<LikeNode>) neo4jTemplate.queryForObjects(LikeNode.class,
                 "MATCH (a {likeNodeType: {likeNodeType}, relationalId: {relationalId}})" +
                         "-[:LIKES]->(b {likeNodeType: {likeNodeType}})" +
-                        "-[:LIKES]->(a {likeNodeType: {likeNodeType}}) RETURN b",
+                        "-[l:LIKES]->(a {likeNodeType: {likeNodeType}}) RETURN b ORDER BY l.timestamp DESC",
                 parameters)).stream().map(LikeNode::getRelationalId).collect(Collectors.toList());
     }
 

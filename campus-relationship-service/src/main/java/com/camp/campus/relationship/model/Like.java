@@ -11,6 +11,8 @@ public class Like {
     private LikeNode from;
     @EndNode
     private LikeNode to;
+    @Property
+    private String timestamp;
 
     public Like() {
     }
@@ -42,5 +44,13 @@ public class Like {
 
     public void setRelationshipId(Long relationshipId) {
         this.relationshipId = relationshipId;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

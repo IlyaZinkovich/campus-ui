@@ -1,7 +1,8 @@
 <div class="panel panel-default" ng-repeat="groupMessage in messages">
     <div class="panel-heading">
         <span class="pull-right">{{groupMessage.postTime | date:'HH:mm:ss dd-MM-yyyy'}}</span>
-        <span>{{groupMessage.authorName + (groupMessage.group.name == null ? ' from ' + groupMessage.group.name : '')}}</span>
+        <span>{{groupMessage.authorName}}</span>
+        <span ng-hide="groupMessage.group.name == null">{{'from ' + groupMessage.group.name}}</span>
     </div>
     <div class="panel-body">
         <p>
