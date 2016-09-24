@@ -5,12 +5,15 @@ angular.module('campus').controller('GroupCtrl', ['$scope', '$state', '$statePar
         GroupService, MessageService) {
 
         $scope.currentUser = localStorageService.get('user');
+        $scope.page = 0;
+        $scope.groupMessages = [];
+        $scope.loading = false;
 
         GroupService.getGroup($stateParams.groupId)
             .then(function(response) {
                 $scope.group = response.data;
                 $scope.imageUrl = $scope.group.imageUrl;
-                MessageService.getGroupMessages($scope.group.id).then(function(response) {
+                MessageService.getGroupMessages($scope.group.id, $scope.page).then(function(response) {
                     $scope.groupMessages = response.data;
                 });
                 GroupService.getStudentGroups($scope.currentUser.id, true)
@@ -49,17 +52,32 @@ angular.module('campus').controller('GroupCtrl', ['$scope', '$state', '$statePar
         };
 
         $scope.postMessage = function() {
+            if ($scope.messageBody === '') return;
             var message = {
                 'message': $scope.messageBody,
                 'studentId': $scope.currentUser.id
             }
             MessageService.postGroupMessage($scope.group.id, message)
                 .then(function(response) {
-                    MessageService.getGroupMessages($scope.group.id).then(function(response) {
+                    $scope.page = 0;
+                    MessageService.getGroupMessages($scope.group.id, $scope.page).then(function(response) {
                         $scope.groupMessages = response.data;
                     });
                     $scope.messageBody = '';
                 });
+        }
+
+        $scope.nextPage = function() {
+            if ($scope.loading) return;
+            if ($scope.page !== 0) {
+                $scope.loading = true;
+                MessageService.getGroupMessages($scope.group.id, $scope.page).then(function(response) {
+                    $scope.lastChunk = response.data;
+                    $scope.groupMessages.push.apply($scope.groupMessages, $scope.lastChunk);
+                    $scope.loading = false;
+                });
+            }
+            $scope.page++;
         }
     }
 ]);

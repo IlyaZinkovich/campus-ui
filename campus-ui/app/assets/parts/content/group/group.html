@@ -40,7 +40,12 @@
                                         </form>
                                     </div>
                                 </div>
-                                <group-messages messages="groupMessages"></group-messages>
+                                <div class="row" infinite-scroll='nextPage()' infinite-scroll-distance='0' infinite-scroll-disabled='loading'>
+                                    <div class="col-md-12">
+                                        <group-messages messages="groupMessages"></group-messages>
+                                        <div class="loader" ng-show="loading && (lastChunk == null || lastChunk.length > 0)"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
