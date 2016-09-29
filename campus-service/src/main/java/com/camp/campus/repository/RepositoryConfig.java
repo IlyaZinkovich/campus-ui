@@ -15,12 +15,6 @@ import org.springframework.web.client.RestTemplate;
 @EnableTransactionManagement
 public class RepositoryConfig {
 
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
 //    @Resource
 //    private Environment env;
 //
