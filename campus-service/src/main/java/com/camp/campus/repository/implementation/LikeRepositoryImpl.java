@@ -36,16 +36,46 @@ public class LikeRepositoryImpl implements LikeRepository {
 
     @Override
     public boolean saveLikeOrRemoveIfExists(Like like) {
-        String likeSource = Optional.ofNullable(likeTypeToSourceTable(like.getType()))
-                .orElseThrow(() -> new RuntimeException("Like type is null"));
         MapSqlParameterSource parameters = new MapSqlParameterSource("fromId", like.getFrom())
                 .addValue("toId", like.getTo());
-        if (!likeExists(likeSource, parameters)) {
-            jdbcTemplate.update("INSERT INTO " + likeSource + " VALUES(:fromId,:toId,:timestamp)",
+        if (LikeType.STUDENT_TO_STUDENT.equals(like.getType())) {
+            return likeStudent(parameters);
+        }
+        if (LikeType.STUDENT_TO_MESSAGE.equals(like.getType())) {
+            return likeMessage(parameters);
+        }
+        return false;
+    }
+
+    private boolean likeStudent(MapSqlParameterSource parameters) {
+        if (!likeExists("STUDENT_LIKES", parameters)) {
+            if (jdbcTemplate.queryForList("SELECT S.ID FROM STUDENTS S WHERE S.ID=:fromId OR S.ID=:toId",
+                    parameters, Long.class).size() != 2) {
+                return false;
+            }
+            jdbcTemplate.update("INSERT INTO STUDENT_LIKES VALUES(:fromId,:toId,:timestamp)",
                     parameters.addValue("timestamp", Timestamp.valueOf(LocalDateTime.now())));
             return true;
         } else {
-            jdbcTemplate.update("DELETE " + likeSource + " L WHERE L.FROM_ID=:fromId AND L.TO_ID=:toId",
+            jdbcTemplate.update("DELETE STUDENT_LIKES L WHERE L.FROM_ID=:fromId AND L.TO_ID=:toId",
+                    parameters);
+            return false;
+        }
+    }
+
+    private boolean likeMessage(MapSqlParameterSource parameters) {
+        if (!likeExists("MESSAGE_LIKES", parameters)) {
+            if (jdbcTemplate.queryForList("SELECT S.ID FROM STUDENTS S WHERE S.ID=:fromId",
+                    parameters, Long.class).size() != 1 &&
+                jdbcTemplate.queryForList("SELECT M.ID FROM GROUP_MESSAGE M WHERE M.ID=:toId",
+                        parameters, Long.class).size() != 1) {
+                return false;
+            }
+            jdbcTemplate.update("INSERT INTO MESSAGE_LIKES VALUES(:fromId,:toId,:timestamp)",
+                    parameters.addValue("timestamp", Timestamp.valueOf(LocalDateTime.now())));
+            return true;
+        } else {
+            jdbcTemplate.update("DELETE MESSAGE_LIKES L WHERE L.FROM_ID=:fromId AND L.TO_ID=:toId",
                     parameters);
             return false;
         }
