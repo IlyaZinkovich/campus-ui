@@ -29,6 +29,22 @@ public class StudentDTO {
     public StudentDTO() {
     }
 
+    public StudentDTO(Long id, String firstName, String lastName, String gender,
+                      LocalDate birthDate, String faculty, String speciality,
+                      Integer course, Integer group, String roomNumber, String imagePath) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.faculty = faculty;
+        this.speciality = speciality;
+        this.course = course;
+        this.group = group;
+        this.roomNumber = roomNumber;
+        this.imagePath = imagePath;
+    }
+
     public Long getId() {
         return id;
     }

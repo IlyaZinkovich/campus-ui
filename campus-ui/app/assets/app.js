@@ -1,7 +1,6 @@
 angular.module('campus', ['ui.router', 'ui.bootstrap', 'LocalStorageModule', 'infinite-scroll'])
     .constant({
         SERVER_HOST: 'http://localhost:8088',
-        RELATIONSHIP_SERVER_HOST: 'http://localhost:8089',
         ROOMS_PER_PAGE: 20,
         STUDENTS_PER_PAGE: 18,
         MESSAGES_PER_PAGE: 20

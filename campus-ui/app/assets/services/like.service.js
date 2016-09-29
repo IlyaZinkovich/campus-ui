@@ -1,15 +1,15 @@
-angular.module('campus').factory('LikeService', ['$http', 'SERVER_HOST', 'RELATIONSHIP_SERVER_HOST', function($http, SERVER_HOST, RELATIONSHIP_SERVER_HOST) {
+angular.module('campus').factory('LikeService', ['$http', 'SERVER_HOST', 'SERVER_HOST', function($http, SERVER_HOST, SERVER_HOST) {
 
     function like(likeObj) {
-        return $http.post(RELATIONSHIP_SERVER_HOST + '/v1/likes', likeObj);
+        return $http.post(SERVER_HOST + '/v1/likes', likeObj);
     }
 
     function getLikeStudents(studentId) {
-        return $http.get(SERVER_HOST + '/v1/likes/students/' + studentId)
+        return $http.get(SERVER_HOST + '/v1/students/likes/' + studentId)
     }
 
     function checkIfLikeExists(from, to, type) {
-        return $http.get(RELATIONSHIP_SERVER_HOST + '/v1/likes', {
+        return $http.get(SERVER_HOST + '/v1/likes', {
             params: {
                 from: from,
                 to: to,
@@ -19,7 +19,7 @@ angular.module('campus').factory('LikeService', ['$http', 'SERVER_HOST', 'RELATI
     }
 
     function findStudentIdsForMessageLikes(messageId) {
-        return $http.get(RELATIONSHIP_SERVER_HOST + '/v1/likes/students', {
+        return $http.get(SERVER_HOST + '/v1/likes/students', {
             params : {
                 messageId : messageId
             }

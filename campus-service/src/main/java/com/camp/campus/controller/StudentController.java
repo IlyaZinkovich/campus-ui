@@ -53,9 +53,9 @@ public class StudentController {
         studentService.updateStudentImage(studentId, imagePath);
     }
 
-    @RequestMapping(path = "v1/likes/students/{studentId}", method = GET)
+    @RequestMapping(path = "v1/students/likes/{studentId}", method = GET)
     public List<StudentDTO> findStudentsWithMutualLike(@PathVariable("studentId") Long studentId) {
-        List<Long> studentIds = likeService.findStudentIdsWithMutualLike(studentId);
+        List<Long> studentIds = likeService.findStudentsWithMutualLike(studentId);
         return studentService.getStudentsByIds(studentIds);
     }
 }
