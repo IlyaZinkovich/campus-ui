@@ -8,14 +8,12 @@ angular.module('campus').controller('GroupCtrl', ['$scope', '$state', '$statePar
         $scope.page = 0;
         $scope.groupMessages = [];
         $scope.loading = false;
+        $scope.groupId = parseInt($stateParams.groupId);
 
-        GroupService.getGroup($stateParams.groupId)
+        GroupService.getGroup($scope.groupId)
             .then(function(response) {
                 $scope.group = response.data;
                 $scope.imageUrl = $scope.group.imageUrl;
-                MessageService.getGroupMessages($scope.group.id, $scope.page).then(function(response) {
-                    $scope.groupMessages = response.data;
-                });
                 GroupService.getStudentGroups($scope.currentUser.id, true)
                     .then(function(response) {
                         $scope.studentGroups = response.data;
@@ -32,7 +30,10 @@ angular.module('campus').controller('GroupCtrl', ['$scope', '$state', '$statePar
 
         $scope.leave = function() {
             GroupService.updateStudentInGroup($scope.group.id, $scope.currentUser.id, 'DELETE').then(function(response) {
-                var index = $scope.studentGroups.indexOf($scope.group);
+                var index = $scope.studentGroups.map(function(group)
+                    {
+                        return group.id;
+                    }).indexOf($scope.groupId);
                 $scope.studentGroups.splice(index, 1);
                 checkIfStudentJoinedGroup();
             });
@@ -69,14 +70,12 @@ angular.module('campus').controller('GroupCtrl', ['$scope', '$state', '$statePar
 
         $scope.nextPage = function() {
             if ($scope.loading) return;
-            if ($scope.page !== 0) {
-                $scope.loading = true;
-                MessageService.getGroupMessages($scope.group.id, $scope.page).then(function(response) {
-                    $scope.lastChunk = response.data;
-                    $scope.groupMessages.push.apply($scope.groupMessages, $scope.lastChunk);
-                    $scope.loading = false;
-                });
-            }
+            $scope.loading = true;
+            MessageService.getGroupMessages($scope.groupId, $scope.page).then(function(response) {
+                $scope.lastChunk = response.data;
+                $scope.groupMessages.push.apply($scope.groupMessages, $scope.lastChunk);
+                $scope.loading = false;
+            });
             $scope.page++;
         }
     }
