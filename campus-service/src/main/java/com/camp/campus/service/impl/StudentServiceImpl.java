@@ -14,8 +14,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.Collections.*;
 
 @Service
 @Transactional
@@ -65,6 +68,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<StudentDTO> getStudentsByIds(List<Long> studentIds) {
+        if (studentIds.isEmpty()) return emptyList();
         return studentRepository.findByIds(studentIds).stream().map(this::studentToDto).collect(Collectors.toList());
     }
 
