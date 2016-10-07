@@ -57,7 +57,7 @@ public class LikeRepositoryImpl implements LikeRepository {
                     parameters.addValue("timestamp", Timestamp.valueOf(LocalDateTime.now())));
             return true;
         } else {
-            jdbcTemplate.update("DELETE STUDENT_LIKES L WHERE L.FROM_ID=:fromId AND L.TO_ID=:toId",
+            jdbcTemplate.update("DELETE FROM STUDENT_LIKES L WHERE L.FROM_ID=:fromId AND L.TO_ID=:toId",
                     parameters);
             return false;
         }
@@ -75,7 +75,7 @@ public class LikeRepositoryImpl implements LikeRepository {
                     parameters.addValue("timestamp", Timestamp.valueOf(LocalDateTime.now())));
             return true;
         } else {
-            jdbcTemplate.update("DELETE MESSAGE_LIKES L WHERE L.FROM_ID=:fromId AND L.TO_ID=:toId",
+            jdbcTemplate.update("DELETE FROM MESSAGE_LIKES L WHERE L.FROM_ID=:fromId AND L.TO_ID=:toId",
                     parameters);
             return false;
         }
@@ -105,5 +105,4 @@ public class LikeRepositoryImpl implements LikeRepository {
         }
         return null;
     }
-
 }
