@@ -2,11 +2,10 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     minifyCss = require('gulp-minify-css'),
     browserSync = require('browser-sync').create(),
-    wiredep = require('wiredep').stream,
     modRewrite  = require('connect-modrewrite');
 
 gulp.task('clean', function() {
-  gulp.src('dist', {read:false})
+  gulp.src('dist/', {read:false})
     .pipe($.clean());
 });
 
@@ -23,7 +22,7 @@ gulp.task('image', function() {
 });
 
 gulp.task('fonts', function() {
-  return gulp.src(['app/bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.*'])
+  return gulp.src(['node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.*'])
     .pipe(gulp.dest('dist/fonts'));
 });
 
@@ -39,16 +38,15 @@ gulp.task('build', function() {
 
 gulp.task('bower', function() {
   return gulp.src('app/index.html')
-    .pipe(wiredep({ directory: 'app/bower_components'}))
-    .pipe($.inject(gulp.src(['app/assets/**/*.js'], {read: false}), {ignorePath: 'app/', addRootSlash: false}))
-    .pipe($.inject(gulp.src(['app/assets/**/*.css'], {read: false}), {ignorePath: 'app/', addRootSlash: false}))
+    .pipe($.inject(gulp.src(['node_modules/*/*.min.js', 'app/assets/app.js','app/assets/parts/**/*.js', 'app/assets/services/**/*.js'], {read: false}), {ignorePath : 'app/', addRootSlash: false, relative: true}))
+    .pipe($.inject(gulp.src(['app/assets/**/*.css'], {read: false}), {ignorePath : 'app/', addRootSlash: false}))
     .pipe(gulp.dest('app'))
     .pipe(browserSync.stream());
 });
 
-gulp.task('default', ['build', 'html'], function () {
+gulp.task('default', ['bower', 'build', 'html'], function () {
   browserSync.init({
-    server: './dist',
+    server: 'dist',
     port: 8083,
     notify: false,
     middleware: [
@@ -57,9 +55,9 @@ gulp.task('default', ['build', 'html'], function () {
       ])
     ],
     routes: {
-        '/bower_components': '.app/bower_components'
+        './node_modules': '.node_modules'
     }
   });
-  gulp.watch('app/**/*.{css,js, html}', ['build']);
-  gulp.watch('app/**/*.html', ['html']);
+  gulp.watch('app/assets/**/*.{css,js, html}', ['build']);
+  gulp.watch('app/assets/**/*.html', ['html']);
 });
