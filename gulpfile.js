@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
-    minifyCss = require('gulp-minify-css'),
     browserSync = require('browser-sync').create(),
     modRewrite  = require('connect-modrewrite');
 
@@ -26,25 +25,27 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('dist/fonts'));
 });
 
-gulp.task('build', function() {
+gulp.task('build', ['inject'], function() {
   return gulp.src('app/*.html')
     .pipe($.useref())
     // .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', minifyCss()))
-    .pipe($.useref())
+    .pipe($.if('*.css', $.minifyCss()))
     .pipe(gulp.dest('dist'))
     .pipe(browserSync.stream());
 });
 
-gulp.task('bower', function() {
+gulp.task('inject', function() {
   return gulp.src('app/index.html')
-    .pipe($.inject(gulp.src(['node_modules/*/*.min.js', 'app/assets/app.js','app/assets/parts/**/*.js', 'app/assets/services/**/*.js'], {read: false}), {ignorePath : 'app/', addRootSlash: false, relative: true}))
+    .pipe($.inject(gulp.src(['node_modules/{app,components,loopback}/**/*.js']),
+    {ignorePath : 'app/', addRootSlash: false, relative: true, name: 'vendors'}))
+    .pipe($.inject(gulp.src(['app/assets/**/*.js']).pipe($.angularFilesort()),
+    {ignorePath : 'app/', addRootSlash: false, relative: true, name : 'main'}))
     .pipe($.inject(gulp.src(['app/assets/**/*.css'], {read: false}), {ignorePath : 'app/', addRootSlash: false}))
     .pipe(gulp.dest('app'))
     .pipe(browserSync.stream());
 });
 
-gulp.task('default', ['bower', 'build', 'html'], function () {
+gulp.task('default', ['build', 'html'], function () {
   browserSync.init({
     server: 'dist',
     port: 8083,
@@ -58,6 +59,6 @@ gulp.task('default', ['bower', 'build', 'html'], function () {
         './node_modules': '.node_modules'
     }
   });
-  gulp.watch('app/assets/**/*.{css,js, html}', ['build']);
+  gulp.watch('app/assets/**/*.{css,js,html}', ['build']);
   gulp.watch('app/assets/**/*.html', ['html']);
 });

@@ -1,4 +1,4 @@
-angular.module('campus', ['ui.router', 'ui.bootstrap', 'LocalStorageModule', 'infinite-scroll'])
+angular.module("campus", ['ui.router', 'ui.bootstrap', 'LocalStorageModule', 'infinite-scroll'])
     .constant({
         SERVER_HOST: 'http://localhost:8088',
         ROOMS_PER_PAGE: 20,

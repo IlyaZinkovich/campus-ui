@@ -5,20 +5,19 @@
     <meta charset="utf-8">
     <title>Campus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- build:css css/vendor.css -->
-    <!-- endbuild -->
+
     <!-- build:css css/main.css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="assets/parts/header/header.css">
-    <link rel="stylesheet" href="assets/parts/footer/footer.css">
-    <link rel="stylesheet" href="assets/parts/login/login.css">
-    <link rel="stylesheet" href="assets/parts/menu/menu.css">
     <link rel="stylesheet" href="assets/resources/css/index.css">
     <link rel="stylesheet" href="assets/resources/fonts/sf-webfont.css">
+    <link rel="stylesheet" href="assets/parts/footer/footer.css">
+    <link rel="stylesheet" href="assets/parts/menu/menu.css">
+    <link rel="stylesheet" href="assets/parts/login/login.css">
+    <link rel="stylesheet" href="assets/parts/header/header.css">
     <link rel="stylesheet" href="assets/parts/content/events/events.css">
     <link rel="stylesheet" href="assets/parts/content/group/group.css">
-    <link rel="stylesheet" href="assets/parts/content/groups/groups.css">
     <link rel="stylesheet" href="assets/parts/content/messages/messages.css">
+    <link rel="stylesheet" href="assets/parts/content/groups/groups.css">
     <link rel="stylesheet" href="assets/parts/content/profile/profile.css">
     <link rel="stylesheet" href="assets/parts/content/students/students.css">
     <link rel="stylesheet" href="assets/parts/content/students/filter/filter.css">
@@ -29,39 +28,45 @@
 
 <div ui-view></div>
 
-<!-- build:js scripts/vendor.js -->
-<!-- endbuild -->
-<!-- build:js scripts/main.js -->
-<!-- inject:js -->
+<!-- build:js scripts/vendors.js -->
+<!-- vendors:js -->
 <script src="../node_modules/angular/angular.min.js"></script>
+<script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+<script src="../node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="../node_modules/angular-bootstrap/ui-bootstrap.min.js"></script>
+<!-- endinject -->
+ <!-- endbuild -->
+
+<!-- build:js scripts/main.js -->
+<!-- main:js -->
 <script src="assets/app.js"></script>
-<script src="assets/parts/header/header.controller.js"></script>
-<script src="assets/parts/login/login.controller.js"></script>
-<script src="assets/parts/login/login.js"></script>
-<script src="assets/parts/menu/menu.controller.js"></script>
-<script src="assets/parts/content/events/events.controller.js"></script>
-<script src="assets/parts/content/events/events.js"></script>
-<script src="assets/parts/content/group/group.controller.js"></script>
-<script src="assets/parts/content/group/group.js"></script>
-<script src="assets/parts/content/groups/groups.controller.js"></script>
-<script src="assets/parts/content/groups/groups.js"></script>
-<script src="assets/parts/content/messages/messages.directive.js"></script>
-<script src="assets/parts/content/profile/profile.controller.js"></script>
-<script src="assets/parts/content/profile/profile.js"></script>
-<script src="assets/parts/content/students/students.js"></script>
-<script src="assets/parts/content/students/filter/filter.directive.js"></script>
-<script src="assets/parts/content/students/modal/student-modal.controller.js"></script>
 <script src="assets/parts/content/students/content/list/students.list.controller.js"></script>
 <script src="assets/parts/content/students/content/rooms/students.rooms.controller.js"></script>
-<script src="assets/services/auth.service.js"></script>
-<script src="assets/services/event.service.js"></script>
-<script src="assets/services/group.service.js"></script>
-<script src="assets/services/like.service.js"></script>
-<script src="assets/services/message.service.js"></script>
-<script src="assets/services/room.service.js"></script>
-<script src="assets/services/student.service.js"></script>
+<script src="assets/parts/content/students/modal/student-modal.controller.js"></script>
+<script src="assets/parts/content/students/filter/filter.directive.js"></script>
+<script src="assets/parts/content/students/students.js"></script>
+<script src="assets/parts/content/profile/profile.js"></script>
+<script src="assets/parts/content/profile/profile.controller.js"></script>
+<script src="assets/parts/content/groups/groups.js"></script>
+<script src="assets/parts/content/groups/groups.controller.js"></script>
+<script src="assets/parts/content/messages/messages.directive.js"></script>
+<script src="assets/parts/content/group/group.js"></script>
+<script src="assets/parts/content/group/group.controller.js"></script>
+<script src="assets/parts/content/events/events.js"></script>
+<script src="assets/parts/content/events/events.controller.js"></script>
+<script src="assets/parts/header/header.controller.js"></script>
+<script src="assets/parts/login/login.js"></script>
+<script src="assets/parts/login/login.controller.js"></script>
+<script src="assets/parts/menu/menu.controller.js"></script>
 <script src="assets/services/util.service.js"></script>
+<script src="assets/services/student.service.js"></script>
+<script src="assets/services/room.service.js"></script>
+<script src="assets/services/message.service.js"></script>
+<script src="assets/services/like.service.js"></script>
+<script src="assets/services/group.service.js"></script>
+<script src="assets/services/event.service.js"></script>
+<script src="assets/services/auth.service.js"></script>
 <!-- endinject -->
-<!-- endbuild -->
+ <!-- endbuild -->
 </body>
 </html>
